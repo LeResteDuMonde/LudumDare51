@@ -5,6 +5,8 @@ var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 var nb_customers = 3
 onready var customers = []
 
+var customer_scene = load("res://Scenes/Customer.tscn")
+
 func _ready():
 	create_customers()
 	new_customer()
@@ -32,9 +34,17 @@ func create_customers():
 	rng.randomize()
 	for i in range(0, nb_customers):
 		var n = rng.randi_range(0,drawings.size()-1)
-		customers += [load(drawings.pop_at(n))]
+		var customer = customer_scene.instance()
+		customer.set_position(Vector2(-i*200-300, 400))
+		customer.set_drawing(load(drawings.pop_at(n)))
+		add_child(customer)
+		customers += [customer]
 
 func new_customer():
 	if(customers != []):
-		var new_drawing = customers.pop_front()
-		get_node("../Canva/Drawing").set_drawing(new_drawing)
+		var customer = customers.pop_front()
+		var drawing = customer.drawing
+		get_node("../Canva/Drawing").set_drawing(drawing)
+		remove_child(customer)
+		for cust in customers:
+			cust.position +=(Vector2(200, 0))
