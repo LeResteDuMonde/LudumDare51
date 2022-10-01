@@ -8,3 +8,7 @@ func _ready():
 func set_drawing(texture):
 	drawing = texture
 	$WantedDrawing/Drawing.set_texture(texture)
+
+func set_drawing_visible():
+	$WantedDrawing/Drawing.show()
+	$WantedDrawing/Bubble.show()

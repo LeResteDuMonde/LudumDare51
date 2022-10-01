@@ -1,10 +1,11 @@
 extends Node
 
-const DRAWING_TIME = 10
+const DRAWING_TIME = 3
 
 var paused = true
 var timer
 var timer_seconds
+var sound_id = 0;
 
 signal new_customer()
 
@@ -38,11 +39,18 @@ func end_timer():
 	emit_signal("new_customer")
 
 func reset_timer():
+	sound_id = 0
 	label.add_color_override("font_color", Color.black)
 	timer = DRAWING_TIME
 	timer_seconds = 1
 
 func second_passed():
-	timer_seconds = 1
-	timer_sound[0].play()
+	var new_time = 1
+	if(timer < 3): 
+		new_time = 0.25
+	elif(timer < 6): 
+		new_time = 0.5
+	sound_id = 0 if (sound_id == 1) else 1
+	timer_seconds = new_time
+	timer_sound[sound_id].play()
 
