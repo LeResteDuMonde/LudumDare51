@@ -1,6 +1,6 @@
 extends Sprite
 
-const RANGE_ENUMERATOR = 10
+const RANGE_ENUMERATOR = 15
 
 var texture_size = get_texture().get_width()
 var model_size = texture_size / RANGE_ENUMERATOR
@@ -24,6 +24,9 @@ var model = init_model(model_size)
 
 func drawing_to_model(x):
 	return int((x + RANGE_ENUMERATOR/2)/RANGE_ENUMERATOR)
+
+func model_to_drawing(x):
+	return x*RANGE_ENUMERATOR
 
 func build_model():
 	reset_model(model)
@@ -51,16 +54,23 @@ var in_texture = load("res://Sprites/Debug/in.png")
 var out_texture = load("res://Sprites/Debug/out.png")
 var miss_texture = load("res://Sprites/Debug/miss.png")
 
+var debug_points = []
+
 func add_debug(i,j,texture):
 	var point = debug_point_scene.instance()
+	debug_points += [point]
 
 	add_child(point)
-	# points += [point]
 
 	var pixel_position = Vector2(i,j) - Vector2(texture_size,texture_size)/2 #* get_texture().get_width()
 	point.position = pixel_position
 	point.get_node("Sprite").texture = texture
 	point.scale = Vector2(RANGE_ENUMERATOR*5, RANGE_ENUMERATOR*5)
+
+func clear_debug():
+	for p in debug_points:
+		remove_child(p)
+	debug_points = []
 
 onready var canvas_pos = get_node("..").position
 
@@ -74,7 +84,10 @@ func look_around(drawing, x, y):
 	return false
 
 func score(lines):
+	clear_debug()
+
 	# Compute drawing matrix
+	var drawn_pixel_count = 0
 	var drawing = init_model(model_size)
 	reset_model(drawing)
 	for line in lines:
@@ -83,6 +96,8 @@ func score(lines):
 			var pos = point - canvas_pos + Vector2(texture_size/2,texture_size/2)
 			var x = int(min(max(drawing_to_model(pos.x), 0), model_size-1))
 			var y = int(min(max(drawing_to_model(pos.y), 0), model_size-1))
+			if drawing[x][y]:
+				drawn_pixel_count += 1
 			drawing[x][y] = 1
 
 	var good_painted = 0
@@ -90,18 +105,19 @@ func score(lines):
 	for x in range(0,model_size-1):
 		for y in range(0,model_size-1):
 			if model[x][y] and look_around(drawing,x,y):
-				#add_debug(x*RANGE_ENUMERATOR,y*RANGE_ENUMERATOR, in_texture)
+				#add_debug(model_to_drawing(x),model_to_drawing(y), in_texture)
 				good_painted+=1
 			if drawing[x][y] and not look_around(model,x,y):
-				#add_debug(x*RANGE_ENUMERATOR,y*RANGE_ENUMERATOR, out_texture)
+				#add_debug(model_to_drawing(x),model_to_drawing(y), out_texture)
 				bad_painted+=1
-			#if model[x][y] and not look_around(drawing,x,y):
-				#add_debug(x*RANGE_ENUMERATOR,y*RANGE_ENUMERATOR, miss_texture)
-			# 	pass
+			# if model[x][y] and not look_around(drawing,x,y):
+			# 	add_debug(x*RANGE_ENUMERATOR,y*RANGE_ENUMERATOR, miss_texture)
 
-	var score = good_painted*100/opaque_pixel_count
-	score -= bad_painted
-	score = max(score,0)
+	print("opaque: " + str(opaque_pixel_count))
+	print("good: " + str(good_painted))
+	var good = good_painted*100/opaque_pixel_count
+	var bad = bad_painted*100/drawn_pixel_count
+	var score = max(good-bad,0)
 
 	return score
 
