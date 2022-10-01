@@ -1,6 +1,6 @@
 extends Sprite
 
-const RANGE_ENUMERATOR = 30
+const RANGE_ENUMERATOR = 20
 
 var texture_size = get_texture().get_width()
 var model_size = texture_size / RANGE_ENUMERATOR
@@ -73,7 +73,7 @@ func score(lines):
 				pass
 
 	var score = good_painted*100/opaque_pixel_count
-	score -= bad_painted/10
+	score -= bad_painted/5
 	score = max(score,0)
 	print(score)
 
