@@ -1,6 +1,6 @@
 extends Sprite
 
-const RANGE_ENUMERATOR = 20
+const RANGE_ENUMERATOR = 10
 
 var texture_size = get_texture().get_width()
 var model_size = texture_size / RANGE_ENUMERATOR
@@ -8,7 +8,7 @@ var model_size = texture_size / RANGE_ENUMERATOR
 func init_model(n):
 	var pixels = []
 	pixels.resize(n)
-	for i in range(0,n-1):
+	for i in range(0,n):
 		pixels[i] = []
 		pixels[i].resize(n)
 	return pixels
@@ -42,7 +42,32 @@ func build_model():
 # 	var pixel_position = Vector2(i,j) - Vector2(texture_size,texture_size)/2 #* get_texture().get_width()
 # 	point.position = pixel_position
 
+var debug_point_scene = load("res://Scenes/ModelDebug.tscn")
+var in_texture = load("res://Sprites/Debug/in.png")
+var out_texture = load("res://Sprites/Debug/out.png")
+var miss_texture = load("res://Sprites/Debug/miss.png")
+
+func add_debug(i,j,texture):
+	var point = debug_point_scene.instance()
+
+	add_child(point)
+	# points += [point]
+
+	var pixel_position = Vector2(i,j) - Vector2(texture_size,texture_size)/2 #* get_texture().get_width()
+	point.position = pixel_position
+	point.get_node("Sprite").texture = texture
+	point.scale = Vector2(RANGE_ENUMERATOR*5, RANGE_ENUMERATOR*5)
+
 onready var canvas_pos = get_node("..").position
+
+func look_around(drawing, x, y):
+	for i in range(-3,3):
+		for j in range(-3,3):
+			var x1 = min(max(x+i,0), model_size-1)
+			var y1 = min(max(y+j,0), model_size-1)
+			if drawing[x1][y1]:
+				return true
+	return false
 
 func score(lines):
 	# Compute drawing matrix
@@ -60,16 +85,18 @@ func score(lines):
 	var bad_painted = 0
 	for x in range(0,model_size-1):
 		for y in range(0,model_size-1):
-			if model[x][y]:
-				if drawing[x][y]:
-					# add_point(x*RANGE_ENUMERATOR,y*RANGE_ENUMERATOR)
-					good_painted+=1
-			elif drawing[x][y]:
+			if model[x][y] and look_around(drawing,x,y):
+				#add_debug(x*RANGE_ENUMERATOR,y*RANGE_ENUMERATOR, in_texture)
+				good_painted+=1
+			if drawing[x][y] and not look_around(model,x,y):
+				#add_debug(x*RANGE_ENUMERATOR,y*RANGE_ENUMERATOR, out_texture)
 				bad_painted+=1
-				pass
+			# elif model[x][y]:
+			# 	add_debug(x*RANGE_ENUMERATOR,y*RANGE_ENUMERATOR, miss_texture)
+			# 	pass
 
 	var score = good_painted*100/opaque_pixel_count
-	score -= bad_painted/5
+	score -= bad_painted
 	score = max(score,0)
 
 	return score
