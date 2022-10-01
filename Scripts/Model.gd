@@ -80,7 +80,7 @@ onready var canvas_pos = get_node("..").position
 
 func look_around(drawing, x, y):
 	for i in range(-2,3):
-		for j in range(-2,3):
+		for j in range(-1,2):
 			var x1 = min(max(x+i,0), model_size-1)
 			var y1 = min(max(y+j,0), model_size-1)
 			if drawing[x1][y1]:
