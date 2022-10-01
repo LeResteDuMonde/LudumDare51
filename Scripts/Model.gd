@@ -55,8 +55,8 @@ func score(lines):
 		var pc = line.get_point_count()
 		for point in line.points:
 			var pos = point - canvas_pos + Vector2(texture_size/2,texture_size/2)
-			var x = min(max(pos.x/RANGE_ENUMERATOR, 0), model_size-1)
-			var y = min(max(pos.y/RANGE_ENUMERATOR, 0), model_size-1)
+			var x = int(min(max(pos.x/RANGE_ENUMERATOR, 0), model_size-1))
+			var y = int(min(max(pos.y/RANGE_ENUMERATOR, 0), model_size-1))
 			# print(Vector2(x,y))
 			drawing[x][y] = 1
 

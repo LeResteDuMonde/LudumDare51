@@ -16,8 +16,7 @@ func _on_Timer_new_customer():
 	if(customers != []):
 		new_customer()
 	else:
-		get_node("/root/MainScene").load_score()
-		# TODO score scene
+		get_node("/root/MainScene").load_result()
 		pass
 
 func create_customers():
@@ -29,7 +28,6 @@ func create_customers():
 		var file_name = dir.get_next()
 		while file_name != "":
 			if file_name.ends_with(".png"):
-				print(file_name)
 				drawings += [(dir_name + "/" + file_name)]
 			file_name = dir.get_next()
 	else:

@@ -1,7 +1,7 @@
 extends Node2D
 
-var gameScene = load("res://Scenes/GameScene.tscn")
-var scoreScene = load("res://Scenes/ScoreScene.tscn")
+var gameScene = preload("res://Scenes/GameScene.tscn")
+var resultScene = preload("res://Scenes/ResultScene.tscn")
 
 var currentScene
 
@@ -15,7 +15,7 @@ func load_game():
 	add_child(currentScene)
 	get_node("ResultManager").reset()
 
-func load_score():
+func load_result():
 	remove_child(currentScene)
-	currentScene = scoreScene.instance()
+	currentScene = resultScene.instance()
 	add_child(currentScene)
