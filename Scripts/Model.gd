@@ -4,11 +4,11 @@ var points = []
 const RANGE_ENUMERATOR = 10
 
 # func _ready():
-# 	analyse_drawing()
+# 	analyse_model()
 
 var texture_size = get_texture().get_width()
 
-func analyse_drawing():
+func analyse_model():
 	# Reset the points
 	for p in points:
 		remove_child(p)
@@ -25,7 +25,7 @@ func analyse_drawing():
 				#pixel_count+=1
 	#print("opaque pixel in " + str(pixel_count) + " pixels : " + str(opaque_pixel_count))
 
-var point_scene = load("res://Scenes/DrawingPoint.tscn")
+var point_scene = load("res://Scenes/ModelPoint.tscn")
 
 func add_point(i,j):
 	var point = point_scene.instance()
@@ -50,6 +50,6 @@ func calculate_accuracy():
 
 	#TODO calculate accuracy with a formula combining points filled and points in drawn line
 
-func set_drawing(drawing):
-	set_texture(drawing)
-	analyse_drawing()
+func set_model(model):
+	set_texture(model)
+	analyse_model()

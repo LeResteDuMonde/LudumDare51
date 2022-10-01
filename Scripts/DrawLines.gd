@@ -5,10 +5,11 @@ onready var _lines := $Lines
 var _pressed := false
 var _inCanva := false
 
-var current_lines = []
+var user_drawings = [[]]
 var _current_line: Line2D
 
 onready var sound_effect := $AudioStreamPlayer2D
+var line_texture = load("res://Sprites/Canva.png")
 
 func _input(event: InputEvent) -> void:
 	if _inCanva && event is InputEventMouseButton:
@@ -16,15 +17,17 @@ func _input(event: InputEvent) -> void:
 
 		if _pressed:
 			_current_line = Line2D.new()
-			current_lines += [_current_line]
 			_current_line.default_color = Color.black
-			_current_line.texture = load("res://Sprites/Canva.png")
+			_current_line.texture = line_texture
 			_current_line.width = 10
 			_current_line.begin_cap_mode = 2
 			_current_line.end_cap_mode = 2
 			_current_line.set_light_mask(1)
 			_lines.add_child(_current_line)
 			_current_line.set_global_position(Vector2.ZERO)
+
+			# Save it
+			user_drawings[user_drawings.size()-1] += [_current_line]
 
 			if !sound_effect.playing:
 				sound_effect.play(rand_range(0,sound_effect.stream.get_length()))
@@ -36,8 +39,9 @@ func _input(event: InputEvent) -> void:
 
 func clear_lines():
 	sound_effect.stop()
-	for l in current_lines:
+	for l in user_drawings[user_drawings.size()-1]:
 		_lines.remove_child(l)
+	user_drawings += [[]]
 
 func _on_Area2D_mouse_exited():
 	_pressed = false
@@ -50,4 +54,4 @@ func _on_Area2D_mouse_entered():
 func _on_Timer_new_customer():
 	clear_lines()
 	#print("new Customer")
-	$Drawing._on_Timer_new_customer()
+	$Model._on_Timer_new_customer()

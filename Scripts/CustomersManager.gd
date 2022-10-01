@@ -44,7 +44,7 @@ func new_customer():
 	if(customers != []):
 		var customer = customers.pop_front()
 		var drawing = customer.drawing
-		get_node("../Canva/Drawing").set_drawing(drawing)
+		get_node("../Canva/Model").set_model(drawing)
 		remove_child(customer)
 		for cust in customers:
 			cust.position +=(Vector2(200, 0))
