@@ -5,6 +5,7 @@ onready var _lines := $Lines
 var _pressed := false
 var _inCanva := false
 
+var current_lines = []
 var _current_line: Line2D
 
 func _input(event: InputEvent) -> void:
@@ -13,6 +14,7 @@ func _input(event: InputEvent) -> void:
 
 		if _pressed:
 			_current_line = Line2D.new()
+			current_lines += [_current_line]
 			_current_line.default_color = Color.black
 			_current_line.texture = load("res://Sprites/Canva.png")
 			_current_line.width = 10
@@ -25,6 +27,10 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion && _pressed:
 		_current_line.add_point(get_global_mouse_position())
 
+func clear_lines():
+	for l in current_lines:
+		_lines.remove_child(l)
+
 func _on_Area2D_mouse_exited():
 	_pressed = false
 	_inCanva = false
@@ -32,7 +38,7 @@ func _on_Area2D_mouse_exited():
 func _on_Area2D_mouse_entered():
 	_inCanva = true
 
-
 func _on_Timer_new_customer():
+	clear_lines()
 	#print("new Customer")
 	$Drawing._on_Timer_new_customer()
