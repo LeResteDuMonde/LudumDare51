@@ -27,8 +27,8 @@ func create_customers():
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
 		while file_name != "":
-			if file_name.ends_with(".png"):
-				drawings += [(dir_name + "/" + file_name)]
+			if file_name.ends_with("png.import"):
+				drawings += [(dir_name + "/" + file_name.replace(".import", ""))]
 			file_name = dir.get_next()
 	else:
 		print("unable to load drawings")
@@ -42,7 +42,6 @@ func create_customers():
 		customer.set_drawing(load(drawings.pop_at(n)))
 		add_child(customer)
 		customers += [customer]
-	#set_customer_position()
 
 func new_customer():
 	var customer = customers.pop_front()

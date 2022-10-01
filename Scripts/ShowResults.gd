@@ -38,10 +38,8 @@ func _ready():
 	var total_score = resultManager.total_score()
 	get_node("../CanvasLayer/Score/Label").text = str(total_score) + "%"
 
-	print(tattoos.size())
 	for i in range(0, tattoos.size()):
 		add_frame(positions[i], tattoos[i], scores[i])
 
 func _on_Replay_button_down():
-	print("button")
 	sceneManager.load_game()

@@ -30,8 +30,6 @@ func build_model():
 				if (model[x/RANGE_ENUMERATOR][y/RANGE_ENUMERATOR] == 0):
 					opaque_pixel_count += 1
 					model[x/RANGE_ENUMERATOR][y/RANGE_ENUMERATOR] = 1
-				# pixel_count+=1
-	print("opaque pixel " + str(opaque_pixel_count))
 
 # var point_scene = load("res://Scenes/ModelPoint.tscn")
 
@@ -42,7 +40,6 @@ func build_model():
 # 	# points += [point]
 
 # 	var pixel_position = Vector2(i,j) - Vector2(texture_size,texture_size)/2 #* get_texture().get_width()
-# 	#print(pixel_position)
 # 	point.position = pixel_position
 
 onready var canvas_pos = get_node("..").position
@@ -57,7 +54,6 @@ func score(lines):
 			var pos = point - canvas_pos + Vector2(texture_size/2,texture_size/2)
 			var x = int(min(max(pos.x/RANGE_ENUMERATOR, 0), model_size-1))
 			var y = int(min(max(pos.y/RANGE_ENUMERATOR, 0), model_size-1))
-			# print(Vector2(x,y))
 			drawing[x][y] = 1
 
 	var good_painted = 0
@@ -75,7 +71,6 @@ func score(lines):
 	var score = good_painted*100/opaque_pixel_count
 	score -= bad_painted/5
 	score = max(score,0)
-	print(score)
 
 	return score
 

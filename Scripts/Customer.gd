@@ -14,7 +14,6 @@ func set_drawing(texture):
 func set_drawing_visible():
 	$WantedDrawing/Drawing.show()
 	#$WantedDrawing/Drawing.set_light_mask(1)
-	print($WantedDrawing/Drawing.get_light_mask())
 	$WantedDrawing/Bubble.show()
 
 func set_customer_sprite():
@@ -25,9 +24,8 @@ func set_customer_sprite():
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
 		while file_name != "":
-			if file_name.ends_with(".png"):
-				print(file_name)
-				sprites += [(dir_name + "/" + file_name)]
+			if file_name.ends_with(".png.import"):
+				sprites += [(dir_name + "/" + file_name.replace(".import", ""))]
 			file_name = dir.get_next()
 	else:
 		print("unable to load drawings")

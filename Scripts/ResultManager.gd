@@ -13,7 +13,6 @@ func reset():
 func add_tattoo(tattoo, score):
 	tattoos += [tattoo]
 	scores += [score]
-	print(score)
 
 func total_score():
 	var total_score = 0
