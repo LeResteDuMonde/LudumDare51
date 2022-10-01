@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/CustomersManager.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Timer.gd" type="Script" id=2]
@@ -8,8 +8,10 @@
 [ext_resource path="res://Sprites/Hud/GameHud02.png" type="Texture" id=6]
 [ext_resource path="res://Audio/SoundEffect/Timer2.wav" type="AudioStream" id=7]
 [ext_resource path="res://Scenes/Canvas.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Sprites/FullBlack.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Canva.png" type="Texture" id=9]
 [ext_resource path="res://Audio/SoundEffect/Transition.wav" type="AudioStream" id=10]
+[ext_resource path="res://Sprites/Hud/GameHudMask2.png" type="Texture" id=11]
+[ext_resource path="res://Scripts/HudMask.gd" type="Script" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 size = 49
@@ -26,18 +28,27 @@ z_index = 20
 texture = ExtResource( 6 )
 
 [node name="Masks" type="Node2D" parent="Hud"]
+position = Vector2( 572.698, 0 )
+script = ExtResource( 12 )
 
 [node name="Mask" type="Light2D" parent="Hud/Masks"]
+visible = false
 light_mask = 32
 texture = ExtResource( 5 )
 mode = 3
 
-[node name="Light2D" type="Light2D" parent="Hud/Masks"]
-visible = false
+[node name="Mask2" type="Light2D" parent="Hud/Masks"]
 light_mask = 32
-position = Vector2( 611.554, -76.0219 )
-texture = ExtResource( 9 )
+texture = ExtResource( 11 )
 mode = 3
+
+[node name="WhiteMask" type="Node2D" parent="Hud/Masks"]
+position = Vector2( 109.809, -928 )
+scale = Vector2( 2, 1e-05 )
+
+[node name="Sprite" type="Sprite" parent="Hud/Masks/WhiteMask"]
+position = Vector2( 26.1853, 539.755 )
+texture = ExtResource( 9 )
 
 [node name="Canvas" parent="." instance=ExtResource( 8 )]
 light_mask = 32

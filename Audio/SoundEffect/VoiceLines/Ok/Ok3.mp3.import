@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Ok3.mp3-3929796d5658af07669f5209b7db69d5.mp3str"
+
+[deps]
+
+source_file="res://Audio/SoundEffect/VoiceLines/Ok/Ok3.mp3"
+dest_files=[ "res://.import/Ok3.mp3-3929796d5658af07669f5209b7db69d5.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

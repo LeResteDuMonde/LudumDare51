@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/cool1.mp3-08dfa31d534f301f7dcaaed5586bc1d7.mp3str"
+
+[deps]
+
+source_file="res://Audio/SoundEffect/VoiceLines/Cool/cool1.mp3"
+dest_files=[ "res://.import/cool1.mp3-08dfa31d534f301f7dcaaed5586bc1d7.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

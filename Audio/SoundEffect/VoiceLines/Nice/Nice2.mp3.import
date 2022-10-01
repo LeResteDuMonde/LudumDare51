@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Nice2.mp3-792cbef84ae17925ec2b88683fa412ae.mp3str"
+
+[deps]
+
+source_file="res://Audio/SoundEffect/VoiceLines/Nice/Nice2.mp3"
+dest_files=[ "res://.import/Nice2.mp3-792cbef84ae17925ec2b88683fa412ae.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

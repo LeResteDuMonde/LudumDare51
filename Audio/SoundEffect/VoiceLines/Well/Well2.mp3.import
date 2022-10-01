@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Well2.mp3-ca246a35bba5fd33ff6e9bbdcc67344a.mp3str"
+
+[deps]
+
+source_file="res://Audio/SoundEffect/VoiceLines/Well/Well2.mp3"
+dest_files=[ "res://.import/Well2.mp3-ca246a35bba5fd33ff6e9bbdcc67344a.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

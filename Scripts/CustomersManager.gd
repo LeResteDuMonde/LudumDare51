@@ -2,7 +2,7 @@ extends Node2D
 
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 
-var nb_customers = 1
+var nb_customers = 12
 onready var customers = []
 
 var customer_scene = load("res://Scenes/Customer.tscn")
@@ -47,6 +47,7 @@ func new_customer():
 	var customer = customers.pop_front()
 	var drawing = customer.drawing
 	get_node("../Canvas/Model").set_model(drawing)
+	get_node("../Hud/Masks").new_model()
 	remove_child(customer)
 	#for cust in customers:
 	#	cust.position +=(Vector2(200, 0))

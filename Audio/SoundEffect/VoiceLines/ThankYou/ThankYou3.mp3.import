@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/ThankYou3.mp3-a0a9f68b4229bf672951e7607d774bf7.mp3str"
+
+[deps]
+
+source_file="res://Audio/SoundEffect/VoiceLines/ThankYou/ThankYou3.mp3"
+dest_files=[ "res://.import/ThankYou3.mp3-a0a9f68b4229bf672951e7607d774bf7.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

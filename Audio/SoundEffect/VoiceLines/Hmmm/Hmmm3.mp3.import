@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Hmmm3.mp3-4de8b8b8fbf486e435eaf23a78dc5773.mp3str"
+
+[deps]
+
+source_file="res://Audio/SoundEffect/VoiceLines/Hmmm/Hmmm3.mp3"
+dest_files=[ "res://.import/Hmmm3.mp3-4de8b8b8fbf486e435eaf23a78dc5773.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

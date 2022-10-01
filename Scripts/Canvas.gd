@@ -1,12 +1,14 @@
 extends Node2D
 
 onready var _lines := $Lines
-
+onready var voice_line_player := $VoiceLine
 var _pressed := false
 var _inCanva := false
 
 var current_drawing = []
 var _current_line: Line2D
+
+var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 
 onready var sound_effect := $AudioStreamPlayer2D
 var line_texture = load("res://Sprites/Canva.png")
@@ -55,9 +57,49 @@ func _on_Area2D_mouse_entered():
 
 func score_and_reset():
 	var score = $Model.score(current_drawing)
+	score_sound_effect(score)
 	get_node("../CanvasLayer/Score/Label").text = str(score) + "%"
 	get_node("/root/MainScene/ResultManager").add_tattoo(current_drawing, score)
 	clear_lines()
 
 func set_cursor(cursor_sprite):
 	Input.set_custom_mouse_cursor(cursor_sprite)
+
+
+func score_sound_effect(score):
+	var score_label = "Greate"
+	if (score < 10):
+		score_label = "Ha"
+	elif (score < 20):
+		score_label = "Hmmm"
+	elif (score < 30):
+		score_label = "Well"
+	elif (score < 40):
+		score_label = "Ok"
+	elif (score < 50):
+		score_label = "ThankYou"
+	elif (score < 60):
+		score_label = "Nice"
+	elif (score < 70):
+		score_label = "Cool"
+
+	var voice_lines = []
+	var dir_name = "res://Audio/SoundEffect/VoiceLines/" + score_label
+	var dir = Directory.new()
+	if dir.open(dir_name) == OK:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if file_name.ends_with("mp3.import"):
+				voice_lines += [(dir_name + "/" + file_name.replace(".import", ""))]
+			file_name = dir.get_next()
+	else:
+		print("unable to load voice line")
+	
+	rng.randomize()
+	#print(voice_lines.size())
+	var voice_line = voice_lines[rng.randi_range(0,voice_lines.size()-1)]
+	
+	voice_line_player.set_stream(load(voice_line))
+	voice_line_player.play()
+
