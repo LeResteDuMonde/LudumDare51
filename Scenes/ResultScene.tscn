@@ -8,9 +8,9 @@ size = 49
 font_data = ExtResource( 1 )
 
 [node name="ResultScene" type="Node2D"]
+script = ExtResource( 2 )
 
 [node name="Results" type="Node2D" parent="."]
-script = ExtResource( 2 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enable = true
@@ -39,4 +39,4 @@ margin_bottom = 638.0
 rect_scale = Vector2( 5.36949, 4.04641 )
 text = "Replay"
 
-[connection signal="button_down" from="CanvasLayer/Replay" to="Results" method="_on_Replay_button_down"]
+[connection signal="button_down" from="CanvasLayer/Replay" to="." method="_on_Replay_button_down"]

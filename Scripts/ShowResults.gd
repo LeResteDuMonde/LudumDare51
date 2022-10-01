@@ -1,7 +1,7 @@
 extends Node2D
 
-onready var sceneManager = get_node("../../")
-onready var resultManager = get_node("../../ResultManager")
+onready var sceneManager = get_node("../")
+onready var resultManager = get_node("../ResultManager")
 
 var tattooFrame = preload("res://Scenes/TattooFrame.tscn")
 
@@ -36,7 +36,7 @@ func _ready():
 	var scores = resultManager.scores
 
 	var total_score = resultManager.total_score()
-	get_node("../CanvasLayer/Score/Label").text = str(total_score) + "%"
+	get_node("CanvasLayer/Score/Label").text = str(total_score) + "%"
 
 	for i in range(0, tattoos.size()):
 		add_frame(positions[i], tattoos[i], scores[i])
