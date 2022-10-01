@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Sprites/Hud/GameHud02.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Canva.tscn" type="PackedScene" id=2]
@@ -6,9 +6,10 @@
 [ext_resource path="res://Fonts/HelveticaBQ-Roman.otf" type="DynamicFontData" id=4]
 [ext_resource path="res://Scripts/CustomersManager.gd" type="Script" id=5]
 [ext_resource path="res://Sprites/Hud/GameHudMask.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/Customer.tscn" type="PackedScene" id=7]
 
 [sub_resource type="DynamicFont" id=1]
-size = 40
+size = 49
 font_data = ExtResource( 4 )
 
 [node name="MainScene" type="Node2D"]
@@ -36,6 +37,9 @@ position = Vector2( 421, -32 )
 [node name="Customers" type="Node2D" parent="."]
 script = ExtResource( 5 )
 
+[node name="Customer" parent="Customers" instance=ExtResource( 7 )]
+position = Vector2( -493, 433 )
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enable = true
 
@@ -46,13 +50,30 @@ z_index = 1
 script = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="CanvasLayer/Timer"]
-margin_left = -693.0
-margin_top = -545.0
-margin_right = -640.0
-margin_bottom = -498.0
+margin_left = -687.0
+margin_top = -553.0
+margin_right = -620.0
+margin_bottom = -496.0
+rect_rotation = 6.6
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "9.9"
+
+[node name="Score" type="Node2D" parent="CanvasLayer"]
+show_behind_parent = true
+position = Vector2( 25, 23 )
+z_index = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Score"]
+anchor_right = 0.642
+margin_left = -322.0
+margin_top = -501.0
+margin_right = -197.0
+margin_bottom = -444.0
+rect_rotation = -6.6
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "100%"
 
 [connection signal="new_customer" from="CanvasLayer/Timer" to="Canva" method="_on_Timer_new_customer"]
 [connection signal="new_customer" from="CanvasLayer/Timer" to="Customers" method="_on_Timer_new_customer"]
