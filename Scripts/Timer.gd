@@ -18,6 +18,8 @@ func _process(delta):
 
 func process_timer(delta):
 
+	if(timer < 3):
+		label.add_color_override("font_color", Color.red)
 	if timer <= 0:
 		end_timer()
 
@@ -29,5 +31,6 @@ func end_timer():
 	emit_signal("new_customer")
 
 func reset_timer():
+	label.add_color_override("font_color", Color.black)
 	timer = DRAWING_TIME
 

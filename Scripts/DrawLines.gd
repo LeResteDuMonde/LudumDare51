@@ -18,7 +18,7 @@ func _input(event: InputEvent) -> void:
 			_current_line.width = 10
 			_current_line.begin_cap_mode = 2
 			_current_line.end_cap_mode = 2
-			_current_line.set_light_mask(32)
+			_current_line.set_light_mask(1)
 			_lines.add_child(_current_line)
 			_current_line.set_global_position(Vector2.ZERO)
 
