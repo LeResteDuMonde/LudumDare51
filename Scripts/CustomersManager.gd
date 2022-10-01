@@ -7,8 +7,6 @@ onready var customers = []
 
 var customer_scene = load("res://Scenes/Customer.tscn")
 
-signal end_tween
-
 func _ready():
 	create_customers()
 	new_customer()
@@ -41,7 +39,7 @@ func create_customers():
 		customer.set_drawing(load(drawings.pop_at(n)))
 		add_child(customer)
 		customers += [customer]
-	set_customer_position()
+	#set_customer_position()
 
 func new_customer():
 	if(customers != []):
@@ -68,10 +66,17 @@ func set_customer_position():
 		tween.parallel().tween_property(customers[i], "position", new_position, 1)
 		tween.parallel().tween_property(customers[i], "rotation", -.5 , .5)
 		tween.tween_property(customers[i], "rotation", 0.01 , .3)
-		#tween.connect("tween_all_completed", self, "end_tween")
 
-		
-		#customers[i].set_position(new_position)
+	yield(wait(1.3),"completed")
+	
+	for i in range(0, min(customers.size(),2)):
+		customers[i].set_drawing_visible()
 
-func _on_Customers_end_tween():
-	print("end")
+func wait(s):
+	var t = Timer.new()
+	t.set_wait_time(s)
+	t.set_one_shot(true)
+	self.add_child(t)
+	t.start()
+	yield(t, "timeout")
+	t.queue_free()

@@ -1,9 +1,10 @@
 extends Node2D
 
 var drawing
+var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready():
-	pass # Replace with function body.
+	set_customer_sprite()
 
 func set_drawing(texture):
 	drawing = texture
@@ -12,3 +13,26 @@ func set_drawing(texture):
 func set_drawing_visible():
 	$WantedDrawing/Drawing.show()
 	$WantedDrawing/Bubble.show()
+
+func set_customer_sprite():
+	var sprites = []
+	var dir_name = "res://Sprites/Customers"
+	var dir = Directory.new()
+	if dir.open(dir_name) == OK:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if file_name.ends_with(".png"):
+				print(file_name)
+				sprites += [(dir_name + "/" + file_name)]
+			file_name = dir.get_next()
+	else:
+		print("unable to load drawings")
+	
+	rng.randomize()
+	var sprite_path = sprites[rng.randi_range(0,sprites.size()-1)]
+	var sprite = load(sprite_path)
+	$Sprite.set_texture(sprite)
+
+	
+
