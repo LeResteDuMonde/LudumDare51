@@ -4,7 +4,6 @@ const RANGE_ENUMERATOR = 15
 
 var texture_size = get_texture().get_width()
 var model_size = texture_size / RANGE_ENUMERATOR
-var hard_mode = false
 
 func init_model(n):
 	var pixels = []
@@ -116,22 +115,21 @@ func score(lines):
 	print("opaque: " + str(opaque_pixel_count))
 	print("good: " + str(good_painted))
 	var good = good_painted*100/opaque_pixel_count
-	var bad = bad_painted*100/drawn_pixel_count
+	var bad = bad_painted*100/min(drawn_pixel_count, 1)
 	var score = max(good-bad,0)
 
 	return score
+
+onready var resultManager = get_node("/root/MainScene/ResultManager")
 
 func set_model(model):
 	set_texture(model)
 	build_model()
 
-	if(hard_mode): hard_mode()
+	if(resultManager.hard_mode): hard_mode()
 
 func hard_mode():
 	modulate = Color(1,1,1,.5)
 
 	var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
 	tween.tween_property(self, "modulate",  Color(1,1,1,0) , 6)
-
-func set_hard_mode():
-	hard_mode = true

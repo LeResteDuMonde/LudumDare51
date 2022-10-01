@@ -21,20 +21,20 @@ func total_score():
 	total_score /= scores.size()
 	return total_score
 
+var hard_mode = false
 
 var highscore_normal = 0
 var highscore_hard = 0
 
-func set_highscore_normal(s):
-	if s > highscore_normal:
-		highscore_normal = s
-		return true
-	return false
-
-func set_highscore_hard(s):
-	if s > highscore_hard:
-		highscore_hard = s
-		return true
+func set_highscore(s):
+	if hard_mode:
+		if s > highscore_hard:
+			highscore_hard = s
+			return true
+	else:
+		if s > highscore_normal:
+			highscore_normal = s
+			return true
 	return false
 
 var save_file = "user://savegame.save"

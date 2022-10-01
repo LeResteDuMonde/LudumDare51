@@ -41,7 +41,7 @@ func _ready():
 	for i in range(0, tattoos.size()):
 		add_frame(positions[i], tattoos[i], scores[i])
 
-	if resultManager.set_highscore_normal(total_score):
+	if resultManager.set_highscore(total_score):
 		pass # TODO effet new high score
 
 	resultManager.save_game()
