@@ -6,7 +6,7 @@ var nb_customers = 12
 onready var customers = []
 
 var customer_scene = load("res://Scenes/Customer.tscn")
-
+onready var sound_effect := $AudioStreamPlayer2D
 func _ready():
 	create_customers()
 	new_customer()
@@ -67,8 +67,10 @@ func set_customer_position():
 		tween.parallel().tween_property(customers[i], "position", new_position, 1)
 		tween.parallel().tween_property(customers[i], "rotation", -.5 , .5)
 		tween.tween_property(customers[i], "rotation", 0.01 , .3)
-
-	yield(wait(1.3),"completed")
+		
+	yield(wait(0.3),"completed")
+	sound_effect.play()
+	yield(wait(1),"completed")
 	
 	for i in range(0, min(customers.size(),2)):
 		customers[i].set_drawing_visible()

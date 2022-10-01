@@ -20,7 +20,7 @@ window/size/width=1080
 window/size/height=720
 window/size/test_width=800
 window/size/test_height=720
-mouse_cursor/custom_image="res://Sprites/Cursor.png"
+mouse_cursor/custom_image="res://Sprites/Cursor/Cursor.png"
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 

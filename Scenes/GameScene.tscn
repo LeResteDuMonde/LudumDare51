@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/CustomersManager.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Timer.gd" type="Script" id=2]
@@ -8,23 +8,35 @@
 [ext_resource path="res://Sprites/Hud/GameHud02.png" type="Texture" id=6]
 [ext_resource path="res://Audio/SoundEffect/Timer2.wav" type="AudioStream" id=7]
 [ext_resource path="res://Scenes/Canvas.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Sprites/FullBlack.png" type="Texture" id=9]
+[ext_resource path="res://Audio/SoundEffect/Transition.wav" type="AudioStream" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 49
 font_data = ExtResource( 4 )
 
 [node name="GameScene" type="Node2D"]
+position = Vector2( -40, 0 )
 
 [node name="Hud" type="Sprite" parent="."]
 light_mask = 0
 position = Vector2( 50, -14 )
 scale = Vector2( 0.591935, 0.591935 )
+z_index = 20
 texture = ExtResource( 6 )
 
-[node name="Mask" type="Light2D" parent="Hud"]
+[node name="Masks" type="Node2D" parent="Hud"]
+
+[node name="Mask" type="Light2D" parent="Hud/Masks"]
 light_mask = 32
-position = Vector2( 5.06813, 9.53674e-07 )
 texture = ExtResource( 5 )
+mode = 3
+
+[node name="Light2D" type="Light2D" parent="Hud/Masks"]
+visible = false
+light_mask = 32
+position = Vector2( 611.554, -76.0219 )
+texture = ExtResource( 9 )
 mode = 3
 
 [node name="Canvas" parent="." instance=ExtResource( 8 )]
@@ -34,12 +46,16 @@ position = Vector2( 421, -32 )
 [node name="Customers" type="Node2D" parent="."]
 script = ExtResource( 1 )
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Customers"]
+stream = ExtResource( 10 )
+volume_db = -10.0
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enable = true
 
 [node name="Timer" type="Node2D" parent="CanvasLayer"]
 show_behind_parent = true
-position = Vector2( 25, 23 )
+position = Vector2( -9, 29 )
 z_index = 1
 script = ExtResource( 2 )
 
@@ -63,7 +79,7 @@ volume_db = -20.0
 
 [node name="Score" type="Node2D" parent="CanvasLayer"]
 show_behind_parent = true
-position = Vector2( -297, -484 )
+position = Vector2( -331, -481 )
 z_index = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/Score"]

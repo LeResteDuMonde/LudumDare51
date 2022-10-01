@@ -1,6 +1,7 @@
 extends Node2D
 
 var drawing
+
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 #onready var drawing_node = $WantedDrawing/Drawing
 
