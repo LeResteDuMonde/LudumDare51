@@ -24,7 +24,7 @@ func _input(event: InputEvent) -> void:
 			_current_line.end_cap_mode = 2
 			_current_line.set_light_mask(1)
 			_lines.add_child(_current_line)
-			_current_line.set_global_position(Vector2.ZERO)
+			_current_line.set_global_position($Lines.position)
 
 			# Save it
 			user_drawings[user_drawings.size()-1] += [_current_line]
@@ -52,6 +52,6 @@ func _on_Area2D_mouse_entered():
 	_inCanva = true
 
 func _on_Timer_new_customer():
+	var score = $Model.score(user_drawings[user_drawings.size()-1])
+	get_tree().get_root().get_node("MainScene/CanvasLayer/Score/Label").text = str(score) + "%"
 	clear_lines()
-	#print("new Customer")
-	$Model._on_Timer_new_customer()

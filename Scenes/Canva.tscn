@@ -10,7 +10,6 @@
 extents = Vector2( 540, 540 )
 
 [node name="Canva" type="Node2D"]
-position = Vector2( 424, 0 )
 script = ExtResource( 4 )
 
 [node name="Lines" type="Node2D" parent="."]
