@@ -2,6 +2,7 @@ extends Node2D
 
 var drawing
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
+#onready var drawing_node = $WantedDrawing/Drawing
 
 func _ready():
 	set_customer_sprite()
@@ -12,6 +13,8 @@ func set_drawing(texture):
 
 func set_drawing_visible():
 	$WantedDrawing/Drawing.show()
+	#$WantedDrawing/Drawing.set_light_mask(1)
+	print($WantedDrawing/Drawing.get_light_mask())
 	$WantedDrawing/Bubble.show()
 
 func set_customer_sprite():

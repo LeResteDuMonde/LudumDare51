@@ -1,6 +1,6 @@
 extends Node
 
-const DRAWING_TIME = 3
+const DRAWING_TIME = 10
 
 var paused = true
 var timer

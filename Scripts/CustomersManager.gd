@@ -2,7 +2,7 @@ extends Node2D
 
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 
-var nb_customers = 3
+var nb_customers = 12
 onready var customers = []
 
 var customer_scene = load("res://Scenes/Customer.tscn")
