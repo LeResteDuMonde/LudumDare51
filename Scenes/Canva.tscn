@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
+[ext_resource path="res://Audio/SoundEffect/Drawing.wav" type="AudioStream" id=1]
 [ext_resource path="res://Sprites/Canva.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/Drawings/TattooDraw04.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/DrawLines.gd" type="Script" id=4]
@@ -28,6 +29,10 @@ shape = SubResource( 1 )
 modulate = Color( 1, 1, 1, 0.392157 )
 texture = ExtResource( 3 )
 script = ExtResource( 5 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( -11, 0 )
+stream = ExtResource( 1 )
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_Area2D_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_Area2D_mouse_exited"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Line_drawing.mp3-9de144f0f95232e37b947d09811b5283.mp3str"
+
+[deps]
+
+source_file="res://Recherche/Line_drawing.mp3"
+dest_files=[ "res://.import/Line_drawing.mp3-9de144f0f95232e37b947d09811b5283.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
