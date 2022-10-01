@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/TitleScene.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/HelveticaBQ-Roman.otf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 40
+font_data = ExtResource( 2 )
 
 [node name="TitleScene" type="Node2D"]
 script = ExtResource( 1 )
@@ -14,5 +19,59 @@ margin_right = 451.0
 margin_bottom = 607.0
 rect_scale = Vector2( 5.36949, 4.04641 )
 text = "Play"
+
+[node name="Highscores" type="VBoxContainer" parent="CanvasLayer"]
+margin_left = 537.0
+margin_top = 28.0
+margin_right = 1037.0
+margin_bottom = 126.0
+alignment = 1
+
+[node name="Normal" type="HBoxContainer" parent="CanvasLayer/Highscores"]
+margin_right = 500.0
+margin_bottom = 47.0
+
+[node name="High" type="Label" parent="CanvasLayer/Highscores/Normal"]
+margin_right = 441.0
+margin_bottom = 47.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Highscore (normal):"
+uppercase = true
+
+[node name="Score" type="Label" parent="CanvasLayer/Highscores/Normal"]
+margin_left = 445.0
+margin_right = 500.0
+margin_bottom = 47.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "0%"
+align = 2
+
+[node name="Hard" type="HBoxContainer" parent="CanvasLayer/Highscores"]
+margin_top = 51.0
+margin_right = 500.0
+margin_bottom = 98.0
+
+[node name="High" type="Label" parent="CanvasLayer/Highscores/Hard"]
+margin_right = 384.0
+margin_bottom = 47.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Highscore (hard):"
+uppercase = true
+
+[node name="Score" type="Label" parent="CanvasLayer/Highscores/Hard"]
+margin_left = 388.0
+margin_right = 500.0
+margin_bottom = 47.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "0%"
+align = 2
 
 [connection signal="button_down" from="CanvasLayer/Play" to="." method="_on_Play_button_down"]

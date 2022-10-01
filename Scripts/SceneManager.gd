@@ -10,6 +10,12 @@ func _ready():
 	currentScene = titleScene.instance()
 	add_child(currentScene)
 
+func load_menu():
+	remove_child(currentScene)
+	currentScene = titleScene.instance()
+	add_child(currentScene)
+	get_node("ResultManager").reset()
+
 func load_game():
 	remove_child(currentScene)
 	currentScene = gameScene.instance()

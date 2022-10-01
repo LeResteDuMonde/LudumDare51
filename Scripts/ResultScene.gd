@@ -41,5 +41,13 @@ func _ready():
 	for i in range(0, tattoos.size()):
 		add_frame(positions[i], tattoos[i], scores[i])
 
-func _on_Replay_button_down():
+	if resultManager.set_highscore_normal(total_score):
+		pass # TODO effet new high score
+
+	resultManager.save_game()
+
+func _on_Replay_pressed():
 	sceneManager.load_game()
+
+func _on_Menu_pressed():
+	sceneManager.load_menu()
