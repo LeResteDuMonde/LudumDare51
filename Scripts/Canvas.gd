@@ -5,7 +5,7 @@ onready var _lines := $Lines
 var _pressed := false
 var _inCanva := false
 
-var user_drawings = [[]]
+var current_drawing = []
 var _current_line: Line2D
 
 onready var sound_effect := $AudioStreamPlayer2D
@@ -27,7 +27,7 @@ func _input(event: InputEvent) -> void:
 			_current_line.set_global_position($Lines.position)
 
 			# Save it
-			user_drawings[user_drawings.size()-1] += [_current_line]
+			current_drawing += [_current_line]
 
 			if !sound_effect.playing:
 				sound_effect.play(rand_range(0,sound_effect.stream.get_length()))
@@ -39,9 +39,9 @@ func _input(event: InputEvent) -> void:
 
 func clear_lines():
 	sound_effect.stop()
-	for l in user_drawings[user_drawings.size()-1]:
+	for l in current_drawing:
 		_lines.remove_child(l)
-	user_drawings += [[]]
+	current_drawing = []
 
 func _on_Area2D_mouse_exited():
 	_pressed = false
@@ -51,7 +51,8 @@ func _on_Area2D_mouse_exited():
 func _on_Area2D_mouse_entered():
 	_inCanva = true
 
-func _on_Timer_new_customer():
-	var score = $Model.score(user_drawings[user_drawings.size()-1])
-	get_tree().get_root().get_node("MainScene/CanvasLayer/Score/Label").text = str(score) + "%"
+func score_and_reset():
+	var score = $Model.score(current_drawing)
+	get_node("../CanvasLayer/Score/Label").text = str(score) + "%"
+	get_node("/root/MainScene/ResultManager").add_tattoo(current_drawing, score)
 	clear_lines()

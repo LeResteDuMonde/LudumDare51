@@ -33,19 +33,19 @@ func build_model():
 				# pixel_count+=1
 	print("opaque pixel " + str(opaque_pixel_count))
 
-var point_scene = load("res://Scenes/ModelPoint.tscn")
+# var point_scene = load("res://Scenes/ModelPoint.tscn")
 
-func add_point(i,j):
-	var point = point_scene.instance()
+# func add_point(i,j):
+# 	var point = point_scene.instance()
 
-	add_child(point)
-	# points += [point]
+# 	add_child(point)
+# 	# points += [point]
 
-	var pixel_position = Vector2(i,j) - Vector2(texture_size,texture_size)/2 #* get_texture().get_width()
-	#print(pixel_position)
-	point.position = pixel_position
+# 	var pixel_position = Vector2(i,j) - Vector2(texture_size,texture_size)/2 #* get_texture().get_width()
+# 	#print(pixel_position)
+# 	point.position = pixel_position
 
-onready var canvas_pos = get_tree().get_root().get_node("MainScene/Canva").position
+onready var canvas_pos = get_node("..").position
 
 func score(lines):
 	# Compute drawing matrix
@@ -73,7 +73,7 @@ func score(lines):
 				pass
 
 	var score = good_painted*100/opaque_pixel_count
-	score -=bad_painted/10
+	score -= bad_painted/10
 	score = max(score,0)
 	print(score)
 

@@ -2,7 +2,7 @@ extends Node2D
 
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 
-var nb_customers = 8
+var nb_customers = 3
 onready var customers = []
 
 var customer_scene = load("res://Scenes/Customer.tscn")
@@ -12,8 +12,13 @@ func _ready():
 	new_customer()
 
 func _on_Timer_new_customer():
-	new_customer()
-	# pass
+	get_node("../Canvas").score_and_reset()
+	if(customers != []):
+		new_customer()
+	else:
+		get_node("/root/MainScene").load_score()
+		# TODO score scene
+		pass
 
 func create_customers():
 	var drawings = []
@@ -42,14 +47,13 @@ func create_customers():
 	#set_customer_position()
 
 func new_customer():
-	if(customers != []):
-		var customer = customers.pop_front()
-		var drawing = customer.drawing
-		get_node("../Canva/Model").set_model(drawing)
-		remove_child(customer)
-		#for cust in customers:
-		#	cust.position +=(Vector2(200, 0))
-		set_customer_position()
+	var customer = customers.pop_front()
+	var drawing = customer.drawing
+	get_node("../Canvas/Model").set_model(drawing)
+	remove_child(customer)
+	#for cust in customers:
+	#	cust.position +=(Vector2(200, 0))
+	set_customer_position()
 
 func set_customer_position():
 	for i in range(0, customers.size()):
