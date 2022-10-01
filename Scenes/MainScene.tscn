@@ -4,7 +4,7 @@
 [ext_resource path="res://Scenes/Canva.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Timer.gd" type="Script" id=3]
 [ext_resource path="res://Fonts/HelveticaBQ-Roman.otf" type="DynamicFontData" id=4]
-[ext_resource path="res://Scenes/CustomersManager.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/CustomersManager.gd" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 40
