@@ -15,7 +15,6 @@ onready var timer_sound = [$Audio1,$Audio2]
 
 func _ready():
 	reset_timer()
-	paused = false
 
 func _process(delta):
 	if(!paused):
@@ -43,6 +42,7 @@ func reset_timer():
 	label.add_color_override("font_color", Color.black)
 	timer = DRAWING_TIME
 	timer_seconds = 1
+	paused = false
 
 func second_passed():
 	var new_time = 1
@@ -53,4 +53,3 @@ func second_passed():
 	sound_id = 0 if (sound_id == 1) else 1
 	timer_seconds = new_time
 	timer_sound[sound_id].play()
-

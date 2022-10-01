@@ -11,3 +11,7 @@ func _ready():
 
 func _on_Play_button_down():
 	sceneManager.load_game()
+
+
+func _on_PlayHard_button_down():
+	sceneManager.load_game(true)

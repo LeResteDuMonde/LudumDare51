@@ -36,23 +36,31 @@ custom_fonts/font = SubResource( 1 )
 text = "???%"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
-margin_left = 936.0
-margin_top = 599.0
-margin_right = 1070.0
-margin_bottom = 709.0
+margin_left = 747.0
+margin_top = 551.0
+margin_right = 1077.0
+margin_bottom = 691.0
 
 [node name="Replay" type="Button" parent="CanvasLayer/VBoxContainer"]
-margin_right = 134.0
+margin_right = 330.0
 margin_bottom = 53.0
 custom_fonts/font = SubResource( 2 )
 text = "Replay"
 
-[node name="Menu" type="Button" parent="CanvasLayer/VBoxContainer"]
+[node name="ReplayHard" type="Button" parent="CanvasLayer/VBoxContainer"]
 margin_top = 57.0
-margin_right = 134.0
+margin_right = 330.0
 margin_bottom = 110.0
+custom_fonts/font = SubResource( 2 )
+text = "Replay Hard"
+
+[node name="Menu" type="Button" parent="CanvasLayer/VBoxContainer"]
+margin_top = 114.0
+margin_right = 330.0
+margin_bottom = 167.0
 custom_fonts/font = SubResource( 2 )
 text = "Menu"
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Replay" to="." method="_on_Replay_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/ReplayHard" to="." method="_on_ReplayHard_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Menu" to="." method="_on_Menu_pressed"]

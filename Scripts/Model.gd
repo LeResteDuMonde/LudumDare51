@@ -4,7 +4,7 @@ const RANGE_ENUMERATOR = 15
 
 var texture_size = get_texture().get_width()
 var model_size = texture_size / RANGE_ENUMERATOR
-var hard_mode = true
+var hard_mode = false
 
 func init_model(n):
 	var pixels = []
@@ -128,4 +128,10 @@ func set_model(model):
 	if(hard_mode): hard_mode()
 
 func hard_mode():
-	pass
+	modulate = Color(1,1,1,.5)
+
+	var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
+	tween.tween_property(self, "modulate",  Color(1,1,1,0) , 6)
+
+func set_hard_mode():
+	hard_mode = true
