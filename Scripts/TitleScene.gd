@@ -3,6 +3,7 @@ extends Node2D
 onready var sceneManager = get_node("../")
 onready var resultManager = sceneManager.get_node("ResultManager")
 onready var stencilManager = sceneManager.get_node("ExternalStencilManager")
+onready var musicManager = get_node("../MusicManager")
 
 onready var loading_wheel = $CanvasLayer/LoadingWheel
 func _ready():
@@ -11,8 +12,10 @@ func _ready():
 	set_highscores()
 	#get_node("CanvasLayer/Highscores/Normal/Score").text = str(resultManager.highscore_normal) + "%"
 	#get_node("CanvasLayer/Highscores/Hard/Score").text = str(resultManager.highscore_hard) + "%"
-	set_external_stencil_count()
-	
+	set_external_stencil_count(true)
+
+	update_music_button(musicManager.get_if_muted())
+
 	if(OS.has_feature("HTML5")):
 		$CanvasLayer/Buttons/Quit.hide()
 		$CanvasLayer/ExternalStencils/LoadExternalStencils.disabled = true
@@ -36,13 +39,14 @@ func _on_LoadExternalStencil_pressed():
 	set_external_stencil_count()
 	loading_wheel.hide()
 
-func set_external_stencil_count():
+func set_external_stencil_count(first_load = false):
 	var count_text = get_node("CanvasLayer/ExternalStencils/Count")
 	var count = stencilManager.stencils.size()
 
-	if(count > 0):
+	if(!first_load or count > 0):
 		count_text.show()
 		count_text.text = str(count)
+		
 
 func set_highscores():
 	var normal = resultManager.highscore_normal
@@ -66,3 +70,16 @@ func set_highscores():
 		highscores.get_node("Hard/Score").text = str(hard) + "%"
 	else:
 		highscores.get_node("Hard").hide()	
+
+
+func _on_Music_button_down():
+	musicManager.mute_music()
+	update_music_button(musicManager.get_if_muted())
+
+func update_music_button(muted):
+	var music_button = $CanvasLayer/Buttons/Music
+
+	var path = "res://Sprites/Buttons/Audio/ButtonsSound"
+	path += "OFF" if muted else "ON"
+	music_button.texture_normal = load(path + ".png")
+	music_button.texture_hover = load(path + "02.png")

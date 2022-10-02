@@ -1,23 +1,25 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Scripts/TitleScene.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/HelveticaBQ-Roman.otf" type="DynamicFontData" id=2]
-[ext_resource path="res://Sprites/Buttons/New/ButtonsExternalOFF.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/Buttons/New/ButtonsExternalON.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Buttons/New/ButtonsPlayON.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Buttons/New/ButtonsQuitOFF.PNG" type="Texture" id=6]
-[ext_resource path="res://Sprites/Buttons/New/ButtonsPlayOFF.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/Buttons/New/ButtonsPlayHardON.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Buttons/ButtonsExternalOFF.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Buttons/ButtonsExternalON.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Buttons/ButtonsPlayON.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Buttons/ButtonsQuitOFF.PNG" type="Texture" id=6]
+[ext_resource path="res://Sprites/Buttons/ButtonsPlayOFF.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Buttons/ButtonsPlayHardON.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/Loading.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/Buttons/New/ButtonsPlayHardOFF.png" type="Texture" id=10]
-[ext_resource path="res://Sprites/Buttons/New/ButtonsQuitON.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Buttons/ButtonsPlayHardOFF.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Buttons/ButtonsQuitON.png" type="Texture" id=11]
 [ext_resource path="res://Sprites/TitleScene/Menu1.png" type="Texture" id=12]
 [ext_resource path="res://Sprites/TitleScene/Menu2.png" type="Texture" id=13]
-[ext_resource path="res://Sprites/Buttons/New/ButtonsExternalDisabled.PNG" type="Texture" id=14]
+[ext_resource path="res://Sprites/Buttons/ButtonsExternalDisabled.PNG" type="Texture" id=14]
 [ext_resource path="res://Sprites/TitleScene/ButtonsHard.png" type="Texture" id=15]
 [ext_resource path="res://Sprites/TitleScene/ButtonsNormal.png" type="Texture" id=16]
 [ext_resource path="res://Sprites/TitleScene/ButtonsHighScore.png" type="Texture" id=17]
 [ext_resource path="res://Sprites/TitleScene/ButtonsLoaded.PNG" type="Texture" id=18]
+[ext_resource path="res://Sprites/Buttons/Audio/ButtonsSoundON02.png" type="Texture" id=19]
+[ext_resource path="res://Sprites/Buttons/Audio/ButtonsSoundON.png" type="Texture" id=20]
 
 [sub_resource type="DynamicFont" id=1]
 size = 70
@@ -107,6 +109,21 @@ texture_hover = ExtResource( 11 )
 expand = true
 stretch_mode = 4
 
+[node name="Music" type="TextureButton" parent="CanvasLayer/Buttons"]
+anchor_left = 0.104
+anchor_top = 0.11
+anchor_right = 0.104
+anchor_bottom = 0.11
+margin_left = 1120.84
+margin_top = 820.6
+margin_right = 1213.84
+margin_bottom = 906.6
+rect_rotation = -8.6
+texture_normal = ExtResource( 20 )
+texture_hover = ExtResource( 19 )
+expand = true
+stretch_mode = 4
+
 [node name="Play" type="TextureButton" parent="CanvasLayer/Buttons"]
 margin_left = 700.0
 margin_top = 530.0
@@ -171,12 +188,11 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 9 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="CanvasLayer"]
-position = Vector2( 768, 540 )
+position = Vector2( 772, 540 )
 scale = Vector2( 0.437159, 0.437159 )
 z_index = -10
 frames = SubResource( 4 )
 animation = "TitleScene"
-frame = 1
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -184,6 +200,7 @@ current = true
 zoom = Vector2( 1.333, 1.333 )
 
 [connection signal="button_down" from="CanvasLayer/Buttons/Quit" to="." method="_on_Quit_button_down"]
+[connection signal="button_down" from="CanvasLayer/Buttons/Music" to="." method="_on_Music_button_down"]
 [connection signal="button_down" from="CanvasLayer/Buttons/Play" to="." method="_on_Play_button_down"]
 [connection signal="button_down" from="CanvasLayer/Buttons/PlayHard" to="." method="_on_PlayHard_button_down"]
 [connection signal="pressed" from="CanvasLayer/ExternalStencils/LoadExternalStencils" to="." method="_on_LoadExternalStencil_pressed"]
