@@ -4,7 +4,7 @@
 # @file
 # @version 0.1
 
-DRAWINGS := $(shell find . -regex "\.\/TattooDraw\w\w.png")
+DRAWINGS := $(shell find . -regex "\.\/TattooDraw[0-9]+\.png")
 DRAWINGS_SMALL := $(patsubst %.png,%_small.png,$(DRAWINGS))
 
 all: $(DRAWINGS_SMALL)
@@ -14,5 +14,4 @@ all: $(DRAWINGS_SMALL)
 
 echo:
 	@echo $(DRAWINGS)
-	@echo $(DRAWINGS_SMALL)
 # end
