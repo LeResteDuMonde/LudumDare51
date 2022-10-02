@@ -17,9 +17,9 @@ func set_mini_drawing(texture):
 	mini_drawing = texture
 
 func set_drawing_visible():
-	$WantedDrawing/Drawing.show()
+	$WantedDrawing.show()
 	#$WantedDrawing/Drawing.set_light_mask(1)
-	$WantedDrawing/Bubble.show()
+	$WantedDrawing.show()
 
 func set_customer_sprite():
 	var sprites = []

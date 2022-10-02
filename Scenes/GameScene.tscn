@@ -4,7 +4,7 @@
 [ext_resource path="res://Scripts/Timer.gd" type="Script" id=2]
 [ext_resource path="res://Audio/SoundEffect/Timer1.wav" type="AudioStream" id=3]
 [ext_resource path="res://Fonts/HelveticaBQ-Roman.otf" type="DynamicFontData" id=4]
-[ext_resource path="res://Sprites/Hud/GameHudMask.png" type="Texture" id=5]
+[ext_resource path="res://Scripts/GameScene.gd" type="Script" id=5]
 [ext_resource path="res://Sprites/Hud/GameHud02.png" type="Texture" id=6]
 [ext_resource path="res://Audio/SoundEffect/Timer2.wav" type="AudioStream" id=7]
 [ext_resource path="res://Scenes/Canvas.tscn" type="PackedScene" id=8]
@@ -21,6 +21,7 @@ font_data = ExtResource( 4 )
 
 [node name="GameScene" type="Node2D"]
 position = Vector2( -40, 0 )
+script = ExtResource( 5 )
 
 [node name="Hud" type="Sprite" parent="."]
 light_mask = 0
@@ -32,12 +33,6 @@ texture = ExtResource( 6 )
 [node name="Masks" type="Node2D" parent="Hud"]
 position = Vector2( 572.698, 0 )
 script = ExtResource( 12 )
-
-[node name="Mask" type="Light2D" parent="Hud/Masks"]
-visible = false
-light_mask = 32
-texture = ExtResource( 5 )
-mode = 3
 
 [node name="Mask2" type="Light2D" parent="Hud/Masks"]
 light_mask = 32
@@ -115,4 +110,9 @@ texture_normal = ExtResource( 13 )
 texture_hover = ExtResource( 14 )
 expand = true
 
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 1.333, 1.333 )
+
 [connection signal="new_customer" from="CanvasLayer/Timer" to="Customers" method="_on_Timer_new_customer"]
+[connection signal="pressed" from="CanvasLayerButton/Menu" to="." method="_on_Menu_pressed"]

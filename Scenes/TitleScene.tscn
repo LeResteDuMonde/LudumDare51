@@ -98,6 +98,10 @@ custom_fonts/font = SubResource( 1 )
 text = "0%"
 align = 2
 
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 1.333, 1.333 )
+
 [connection signal="button_down" from="CanvasLayer/Quit" to="." method="_on_Quit_button_down"]
 [connection signal="button_down" from="CanvasLayer/Play" to="." method="_on_Play_button_down"]
 [connection signal="button_down" from="CanvasLayer/PlayHard" to="." method="_on_PlayHard_button_down"]
