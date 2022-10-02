@@ -10,7 +10,7 @@ var _current_line: Line2D
 
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 
-onready var sound_effect := $AudioStreamPlayer2D
+onready var machine_sound := $TattooMachine
 var line_texture = load("res://Sprites/Canva.png")
 
 func _input(event: InputEvent) -> void:
@@ -31,16 +31,16 @@ func _input(event: InputEvent) -> void:
 			# Save it
 			current_drawing += [_current_line]
 
-			if !sound_effect.playing:
-				sound_effect.play(rand_range(0,sound_effect.stream.get_length()))
+			if !machine_sound.playing:
+				machine_sound.play(rand_range(0,machine_sound.stream.get_length()))
 		else:
-			sound_effect.stop()
+			machine_sound.stop()
 
 	if event is InputEventMouseMotion && _pressed:
 		_current_line.add_point(get_global_mouse_position())
 
 func clear_lines():
-	sound_effect.stop()
+	machine_sound.stop()
 	for l in current_drawing:
 		_lines.remove_child(l)
 	current_drawing = []
@@ -48,12 +48,12 @@ func clear_lines():
 func _on_Area2D_mouse_exited():
 	_pressed = false
 	_inCanva = false
-	sound_effect.stop()
+	machine_sound.stop()
 	set_cursor(load("res://Sprites/Cursor/Cursor.png")) 
 
 func _on_Area2D_mouse_entered():
 	_inCanva = true
-	set_cursor(null) #TODO Pen cursor
+	set_cursor(load("res://Sprites/Cursor/Cursor2.png")) #TODO Pen cursor
 
 func score_and_reset():
 	var score = $Stencil.score(current_drawing)

@@ -12,8 +12,8 @@
 [ext_resource path="res://Audio/SoundEffect/Transition.wav" type="AudioStream" id=10]
 [ext_resource path="res://Sprites/Hud/GameHudMask2.png" type="Texture" id=11]
 [ext_resource path="res://Scripts/HudMask.gd" type="Script" id=12]
-[ext_resource path="res://Sprites/Buttons/BackOff.png" type="Texture" id=13]
-[ext_resource path="res://Sprites/Buttons/BackOn.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/Buttons/New/ButtonsMenuON.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/Buttons/New/ButtonsMenuOFF.png" type="Texture" id=14]
 [ext_resource path="res://Sprites/Hud/GameHudBorder.png" type="Texture" id=15]
 
 [sub_resource type="DynamicFont" id=1]
@@ -28,6 +28,7 @@ script = ExtResource( 5 )
 light_mask = 0
 position = Vector2( 50, -14 )
 scale = Vector2( 0.591935, 0.591935 )
+z_index = 10
 texture = ExtResource( 6 )
 
 [node name="Masks" type="Node2D" parent="Hud"]
@@ -40,11 +41,13 @@ texture = ExtResource( 11 )
 mode = 3
 
 [node name="WhiteMask" type="Node2D" parent="Hud/Masks"]
-position = Vector2( 109.809, -928 )
-scale = Vector2( 2, 1e-05 )
+position = Vector2( 42.234, -1080 )
+scale = Vector2( 2, 2 )
 
 [node name="Sprite" type="Sprite" parent="Hud/Masks/WhiteMask"]
-position = Vector2( 26.1853, 539.755 )
+light_mask = 0
+position = Vector2( 0, 540 )
+z_index = -1
 texture = ExtResource( 9 )
 
 [node name="HudBorder" type="Sprite" parent="Hud"]
@@ -59,9 +62,9 @@ position = Vector2( 421, -32 )
 [node name="Customers" type="Node2D" parent="."]
 script = ExtResource( 1 )
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Customers"]
+[node name="Movement" type="AudioStreamPlayer2D" parent="Customers"]
 stream = ExtResource( 10 )
-volume_db = -10.0
+volume_db = 3.5
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enable = true
@@ -111,8 +114,8 @@ margin_left = 1372.0
 margin_top = 951.0
 margin_right = 1536.0
 margin_bottom = 1028.0
-texture_normal = ExtResource( 13 )
-texture_hover = ExtResource( 14 )
+texture_normal = ExtResource( 14 )
+texture_hover = ExtResource( 13 )
 expand = true
 
 [node name="Camera2D" type="Camera2D" parent="."]

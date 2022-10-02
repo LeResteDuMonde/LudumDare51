@@ -1,132 +1,189 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scripts/TitleScene.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/HelveticaBQ-Roman.otf" type="DynamicFontData" id=2]
-[ext_resource path="res://Sprites/Buttons/StartButtonOff.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/Buttons/StartButtonsOn.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Buttons/QuitOn.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Buttons/QuitOff.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/Buttons/BackOn.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Buttons/New/ButtonsExternalOFF.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Buttons/New/ButtonsExternalON.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Buttons/New/ButtonsPlayON.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Buttons/New/ButtonsQuitOFF.PNG" type="Texture" id=6]
+[ext_resource path="res://Sprites/Buttons/New/ButtonsPlayOFF.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Buttons/New/ButtonsPlayHardON.png" type="Texture" id=8]
+[ext_resource path="res://Loading.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Buttons/New/ButtonsPlayHardOFF.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Buttons/New/ButtonsQuitON.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/TitleScene/Menu1.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/TitleScene/Menu2.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/Buttons/New/ButtonsExternalDisabled.PNG" type="Texture" id=14]
+[ext_resource path="res://Sprites/TitleScene/ButtonsHard.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/TitleScene/ButtonsNormal.png" type="Texture" id=16]
+[ext_resource path="res://Sprites/TitleScene/ButtonsHighScore.png" type="Texture" id=17]
+[ext_resource path="res://Sprites/TitleScene/ButtonsLoaded.PNG" type="Texture" id=18]
+
+[sub_resource type="DynamicFont" id=1]
+size = 70
+font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 30
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=2]
-size = 50
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=1]
-size = 40
-font_data = ExtResource( 2 )
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 12 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "TitleScene",
+"speed": 4.0
+} ]
 
 [node name="TitleScene" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+offset = Vector2( 50, 50 )
+transform = Transform2D( 1, 0, 0, 1, 50, 50 )
 
-[node name="Quit" type="TextureButton" parent="CanvasLayer"]
-margin_left = 1109.0
-margin_top = 821.0
-margin_right = 1409.0
-margin_bottom = 936.0
-texture_normal = ExtResource( 6 )
-texture_hover = ExtResource( 5 )
+[node name="Highscore" type="Control" parent="CanvasLayer"]
+margin_left = 6.0
+margin_right = 46.0
+margin_bottom = 40.0
 
-[node name="Play" type="TextureButton" parent="CanvasLayer"]
-margin_left = 644.0
-margin_top = 661.0
-margin_right = 944.0
-margin_bottom = 781.0
-texture_normal = ExtResource( 3 )
-texture_hover = ExtResource( 4 )
+[node name="Highscore" type="Sprite" parent="CanvasLayer/Highscore"]
+position = Vector2( 737, 12 )
+scale = Vector2( 1, 0.816 )
+texture = ExtResource( 17 )
 
-[node name="ExternalStencils" type="VBoxContainer" parent="CanvasLayer"]
+[node name="Normal" type="Sprite" parent="CanvasLayer/Highscore/Highscore"]
+position = Vector2( -50.9999, 100.49 )
+rotation = -0.0523599
+scale = Vector2( 0.617, 0.632353 )
+texture = ExtResource( 16 )
+
+[node name="Score" type="Label" parent="CanvasLayer/Highscore/Highscore/Normal"]
+margin_left = 178.282
+margin_top = -27.1318
+margin_right = 275.282
+margin_bottom = 54.8682
+rect_rotation = 4.7
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "0%"
+align = 2
+
+[node name="Hard" type="Sprite" parent="CanvasLayer/Highscore/Highscore"]
+position = Vector2( -46.0001, 196.08 )
+rotation = 0.0453786
+scale = Vector2( 0.617, 0.632353 )
+texture = ExtResource( 15 )
+
+[node name="Score" type="Label" parent="CanvasLayer/Highscore/Highscore/Hard"]
+margin_left = 149.005
+margin_top = -29.0613
+margin_right = 261.005
+margin_bottom = 52.9387
+rect_rotation = 4.7
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "0%"
+align = 2
+
+[node name="Buttons" type="Control" parent="CanvasLayer"]
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="LoadExternalStencil" type="TextureButton" parent="CanvasLayer/ExternalStencils"]
-margin_right = 319.0
-margin_bottom = 130.0
-texture_normal = ExtResource( 7 )
+[node name="Quit" type="TextureButton" parent="CanvasLayer/Buttons"]
+anchor_left = 0.104
+anchor_top = 0.11
+anchor_right = 0.104
+anchor_bottom = 0.11
+margin_left = 1297.84
+margin_top = 903.6
+margin_right = 1495.84
+margin_bottom = 989.6
+rect_rotation = 4.7
+texture_normal = ExtResource( 6 )
+texture_hover = ExtResource( 11 )
+expand = true
+stretch_mode = 4
 
-[node name="Label" type="Label" parent="CanvasLayer/ExternalStencils"]
-margin_top = 134.0
-margin_right = 319.0
-margin_bottom = 169.0
+[node name="Play" type="TextureButton" parent="CanvasLayer/Buttons"]
+margin_left = 700.0
+margin_top = 530.0
+margin_right = 955.0
+margin_bottom = 615.0
+rect_rotation = -4.7
+texture_normal = ExtResource( 7 )
+texture_hover = ExtResource( 5 )
+expand = true
+stretch_mode = 4
+
+[node name="PlayHard" type="TextureButton" parent="CanvasLayer/Buttons"]
+margin_left = 600.0
+margin_top = 650.0
+margin_right = 838.0
+margin_bottom = 735.0
+rect_rotation = 5.9
+texture_normal = ExtResource( 10 )
+texture_hover = ExtResource( 8 )
+expand = true
+stretch_mode = 4
+
+[node name="ExternalStencils" type="Control" parent="CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="LoadExternalStencils" type="TextureButton" parent="CanvasLayer/ExternalStencils"]
+margin_right = 526.0
+margin_bottom = 141.0
+texture_normal = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 14 )
+expand = true
+stretch_mode = 4
+
+[node name="Count" type="Label" parent="CanvasLayer/ExternalStencils"]
+visible = false
+anchor_left = 0.078
+anchor_top = 0.143
+anchor_right = 0.435
+anchor_bottom = 0.188
+margin_left = 348.88
+margin_top = 112.28
+margin_right = 653.6
+margin_bottom = 145.48
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 3 )
-text = "0 external STENCILS"
+text = "0"
 uppercase = true
 
-[node name="PlayHard" type="Button" parent="CanvasLayer"]
-margin_left = 527.0
-margin_top = 808.0
-margin_right = 1054.0
-margin_bottom = 944.0
-custom_fonts/font = SubResource( 2 )
-text = "Play Hard"
+[node name="LoadedText" type="Sprite" parent="CanvasLayer/ExternalStencils/Count"]
+position = Vector2( -73, 18 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 18 )
 
-[node name="Highscores" type="VBoxContainer" parent="CanvasLayer"]
-margin_left = 537.0
-margin_top = 28.0
-margin_right = 1037.0
-margin_bottom = 126.0
-alignment = 1
+[node name="LoadingWheel" type="Sprite" parent="CanvasLayer"]
+visible = false
+position = Vector2( 112, 219 )
+rotation = -0.219911
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 9 )
 
-[node name="Normal" type="HBoxContainer" parent="CanvasLayer/Highscores"]
-margin_right = 500.0
-margin_bottom = 47.0
-
-[node name="High" type="Label" parent="CanvasLayer/Highscores/Normal"]
-margin_right = 441.0
-margin_bottom = 47.0
-size_flags_horizontal = 3
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 1 )
-text = "Highscore (normal):"
-uppercase = true
-
-[node name="Score" type="Label" parent="CanvasLayer/Highscores/Normal"]
-margin_left = 445.0
-margin_right = 500.0
-margin_bottom = 47.0
-size_flags_horizontal = 3
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 1 )
-text = "0%"
-align = 2
-
-[node name="Hard" type="HBoxContainer" parent="CanvasLayer/Highscores"]
-margin_top = 51.0
-margin_right = 500.0
-margin_bottom = 98.0
-
-[node name="High" type="Label" parent="CanvasLayer/Highscores/Hard"]
-margin_right = 384.0
-margin_bottom = 47.0
-size_flags_horizontal = 3
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 1 )
-text = "Highscore (hard):"
-uppercase = true
-
-[node name="Score" type="Label" parent="CanvasLayer/Highscores/Hard"]
-margin_left = 388.0
-margin_right = 500.0
-margin_bottom = 47.0
-size_flags_horizontal = 3
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 1 )
-text = "0%"
-align = 2
+[node name="AnimatedSprite" type="AnimatedSprite" parent="CanvasLayer"]
+position = Vector2( 768, 540 )
+scale = Vector2( 0.437159, 0.437159 )
+z_index = -10
+frames = SubResource( 4 )
+animation = "TitleScene"
+frame = 1
+playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 zoom = Vector2( 1.333, 1.333 )
 
-[connection signal="button_down" from="CanvasLayer/Quit" to="." method="_on_Quit_button_down"]
-[connection signal="button_down" from="CanvasLayer/Play" to="." method="_on_Play_button_down"]
-[connection signal="pressed" from="CanvasLayer/ExternalStencils/LoadExternalStencil" to="." method="_on_LoadExternalStencil_pressed"]
-[connection signal="button_down" from="CanvasLayer/PlayHard" to="." method="_on_PlayHard_button_down"]
+[connection signal="button_down" from="CanvasLayer/Buttons/Quit" to="." method="_on_Quit_button_down"]
+[connection signal="button_down" from="CanvasLayer/Buttons/Play" to="." method="_on_Play_button_down"]
+[connection signal="button_down" from="CanvasLayer/Buttons/PlayHard" to="." method="_on_PlayHard_button_down"]
+[connection signal="pressed" from="CanvasLayer/ExternalStencils/LoadExternalStencils" to="." method="_on_LoadExternalStencil_pressed"]

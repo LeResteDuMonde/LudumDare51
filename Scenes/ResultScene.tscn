@@ -1,17 +1,25 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Fonts/HelveticaBQ-Roman.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scripts/ResultScene.gd" type="Script" id=2]
-[ext_resource path="res://Sprites/Buttons/RestartOff.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/Buttons/RestartOn.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Buttons/New/ButtonsMenuOFF.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Buttons/New/ButtonsRestartOFF.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/ResultScene/EndBoard1.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/ResultScene/EndBoard2.png" type="Texture" id=6]
+[ext_resource path="res://ButtonsMenuON.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Buttons/New/ButtonsRestartON.png" type="Texture" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 49
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=2]
-size = 40
-font_data = ExtResource( 1 )
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "ResultScene",
+"speed": 4.0
+} ]
 
 [node name="ResultScene" type="Node2D"]
 script = ExtResource( 2 )
@@ -21,44 +29,51 @@ script = ExtResource( 2 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Replay" type="TextureButton" parent="CanvasLayer"]
-margin_left = 671.0
-margin_top = 840.0
-margin_right = 971.0
-margin_bottom = 970.0
+margin_left = 327.0
+margin_top = 876.0
+margin_right = 627.0
+margin_bottom = 1006.0
+rect_rotation = -2.0
+texture_normal = ExtResource( 4 )
+texture_hover = ExtResource( 8 )
+
+[node name="Menu" type="TextureButton" parent="CanvasLayer"]
+margin_left = 1075.0
+margin_top = 888.0
+margin_right = 1375.0
+margin_bottom = 1018.0
+rect_rotation = -4.5
 texture_normal = ExtResource( 3 )
-texture_hover = ExtResource( 4 )
+texture_hover = ExtResource( 7 )
 
 [node name="Score" type="Node2D" parent="CanvasLayer"]
 show_behind_parent = true
-position = Vector2( 200, 113 )
+position = Vector2( 204, 77 )
 z_index = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/Score"]
 anchor_right = 0.642
-margin_left = 536.0
-margin_top = 888.0
-margin_right = 661.0
-margin_bottom = 945.0
+margin_left = 552.0
+margin_top = 856.0
+margin_right = 677.0
+margin_bottom = 913.0
 rect_rotation = -6.6
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "???%"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
-margin_left = 1272.0
-margin_top = 924.0
-margin_right = 1602.0
-margin_bottom = 1064.0
-
-[node name="Menu" type="Button" parent="CanvasLayer/VBoxContainer"]
-margin_right = 330.0
-margin_bottom = 53.0
-custom_fonts/font = SubResource( 2 )
-text = "Menu"
+[node name="AnimatedSprite" type="AnimatedSprite" parent="CanvasLayer"]
+position = Vector2( 812, 544 )
+scale = Vector2( 0.437, 0.437 )
+z_index = 10
+frames = SubResource( 3 )
+animation = "ResultScene"
+frame = 1
+playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 zoom = Vector2( 1.333, 1.333 )
 
 [connection signal="button_down" from="CanvasLayer/Replay" to="." method="_on_Replay_button_down"]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/Menu" to="." method="_on_Menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/Menu" to="." method="_on_Menu_pressed"]

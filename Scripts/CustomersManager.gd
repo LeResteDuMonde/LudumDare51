@@ -6,7 +6,7 @@ var nb_customers = 12
 onready var customers = []
 
 var customer_scene = load("res://Scenes/Customer.tscn")
-onready var sound_effect := $AudioStreamPlayer2D
+onready var customer_movement_sound := $Movement
 
 onready var externalStencilManager = get_node("../../ExternalStencilManager")
 
@@ -19,6 +19,7 @@ func _on_Timer_new_customer():
 	if(customers != []):
 		new_customer()
 	else:
+		get_node("../Canvas").set_cursor(load("res://Sprites/Cursor/Cursor.png"))
 		get_node("/root/MainScene").load_result()
 		pass
 
@@ -62,8 +63,6 @@ func new_customer():
 	get_node("../Canvas/Stencil").set_stencil(customer.drawing, customer.mini_drawing)
 	get_node("../Hud/Masks").new_stencil()
 	remove_child(customer)
-	#for cust in customers:
-	#	cust.position +=(Vector2(200, 0))
 	set_customer_position()
 
 func set_customer_position():
@@ -83,7 +82,7 @@ func set_customer_position():
 		tween.tween_property(customers[i], "rotation", 0.01 , .3)
 		
 	yield(wait(0.3),"completed")
-	sound_effect.play()
+	customer_movement_sound.play()
 	yield(wait(1),"completed")
 	
 	for i in range(0, min(customers.size(),2)):

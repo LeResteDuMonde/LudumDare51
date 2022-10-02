@@ -11,18 +11,21 @@ font_data = ExtResource( 1 )
 scale = Vector2( 0.3, 0.3 )
 
 [node name="Lines" type="Node2D" parent="."]
+light_mask = 0
 position = Vector2( 0, -100 )
-scale = Vector2( 0.8, 0.8 )
+scale = Vector2( 1.5, 1.5 )
 
 [node name="Frame" type="Sprite" parent="."]
+visible = false
+light_mask = 0
 position = Vector2( 9, 18 )
 texture = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="."]
-margin_left = -84.0
-margin_top = 394.0
-margin_right = 155.0
-margin_bottom = 511.0
+margin_left = 383.333
+margin_top = 393.333
+margin_right = 622.333
+margin_bottom = 510.333
 rect_rotation = -6.6
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 1 )

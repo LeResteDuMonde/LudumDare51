@@ -6,18 +6,18 @@ onready var resultManager = get_node("../ResultManager")
 var tattooFrame = preload("res://Scenes/TattooFrame.tscn")
 
 var positions = [
-	Vector2(-750,-500),
-	Vector2(-250,-500),
-	Vector2(250,-500),
-	Vector2(750,-500),
-	Vector2(-750,-100),
+	Vector2(-650,-400),
+	Vector2(-250,-400),
+	Vector2(250,-400),
+	Vector2(650,-400),
+	Vector2(-650,-100),
 	Vector2(-250,-100),
 	Vector2(250,-100),
-	Vector2(750,-100),
-	Vector2(-750,300),
-	Vector2(-250,300),
-	Vector2(250,300),
-	Vector2(750,300),
+	Vector2(650,-100),
+	Vector2(-650,200),
+	Vector2(-250,200),
+	Vector2(250,200),
+	Vector2(650,200),
 ]
 
 func add_frame(pos, tattoo, score):

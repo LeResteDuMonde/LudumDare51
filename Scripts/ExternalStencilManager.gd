@@ -42,3 +42,5 @@ func load_external_stencils():
 					stencils_mini += [texture_from_image(scale_image(img))]
 					print(file_name + " loaded")
 			file_name = dir.get_next()
+			
+	yield(get_tree().create_timer(0.001), "timeout")
