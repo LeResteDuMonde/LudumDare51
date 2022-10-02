@@ -27,8 +27,8 @@ func create_customers():
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
 		while file_name != "":
-			if file_name.ends_with("png.import"):
-				drawings += [(dir_name + "/" + file_name.replace(".import", ""))]
+			if file_name.ends_with("_small.png.import"):
+				drawings += [(dir_name + "/" + file_name.replace("_small.png.import", ""))]
 			file_name = dir.get_next()
 	else:
 		print("unable to load drawings")
@@ -39,14 +39,15 @@ func create_customers():
 		var n = rng.randi_range(0,drawings.size()-1)
 		var customer = customer_scene.instance()
 		customer.set_position(Vector2(-i*200-300, 400))
-		customer.set_drawing(load(drawings.pop_at(n)))
+		var drawing_name = drawings.pop_at(n)
+		customer.set_drawing(load(drawing_name + ".png"))
+		customer.set_mini_drawing(load(drawing_name + "_small.png"))
 		add_child(customer)
 		customers += [customer]
 
 func new_customer():
 	var customer = customers.pop_front()
-	var drawing = customer.drawing
-	get_node("../Canvas/Model").set_model(drawing)
+	get_node("../Canvas/Model").set_model(customer.drawing, customer.mini_drawing)
 	get_node("../Hud/Masks").new_model()
 	remove_child(customer)
 	#for cust in customers:

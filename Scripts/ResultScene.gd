@@ -52,5 +52,5 @@ func _on_Replay_pressed():
 func _on_Menu_pressed():
 	sceneManager.load_menu()
 
-func _on_ReplayHard_pressed():
-	sceneManager.load_game(true)
+# func _on_ReplayHard_pressed():
+# 	sceneManager.load_game()

@@ -1,6 +1,7 @@
 extends Node2D
 
 var drawing
+var mini_drawing
 
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 #onready var drawing_node = $WantedDrawing/Drawing
@@ -11,6 +12,9 @@ func _ready():
 func set_drawing(texture):
 	drawing = texture
 	$WantedDrawing/Drawing.set_texture(texture)
+
+func set_mini_drawing(texture):
+	mini_drawing = texture
 
 func set_drawing_visible():
 	$WantedDrawing/Drawing.show()
