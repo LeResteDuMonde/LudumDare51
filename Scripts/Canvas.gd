@@ -56,7 +56,7 @@ func _on_Area2D_mouse_entered():
 	set_cursor(null) #TODO Pen cursor
 
 func score_and_reset():
-	var score = $Model.score(current_drawing)
+	var score = $Stencil.score(current_drawing)
 	score_sound_effect(score)
 	get_node("../CanvasLayer/Score/Label").text = str(score) + "%"
 	get_node("/root/MainScene/ResultManager").add_tattoo(current_drawing, score)

@@ -7,6 +7,9 @@ onready var customers = []
 
 var customer_scene = load("res://Scenes/Customer.tscn")
 onready var sound_effect := $AudioStreamPlayer2D
+
+onready var externalStencilManager = get_node("../../ExternalStencilManager")
+
 func _ready():
 	create_customers()
 	new_customer()
@@ -33,22 +36,31 @@ func create_customers():
 	else:
 		print("unable to load drawings")
 
-	# Now select the drawings
+	# Now select the external or internal stencils
+	var external_stencils = externalStencilManager.stencils.duplicate()
+	var external_stencils_mini = externalStencilManager.stencils_mini.duplicate()
+
 	rng.randomize()
 	for i in range(0, nb_customers):
-		var n = rng.randi_range(0,drawings.size()-1)
 		var customer = customer_scene.instance()
 		customer.set_position(Vector2(-i*200-300, 400))
-		var drawing_name = drawings.pop_at(n)
-		customer.set_drawing(load(drawing_name + ".png"))
-		customer.set_mini_drawing(load(drawing_name + "_small.png"))
+		if external_stencils != []:
+			var n = rng.randi_range(0,external_stencils.size()-1)
+			customer.set_drawing(external_stencils.pop_at(n))
+			customer.set_mini_drawing(external_stencils_mini.pop_at(n))
+			print("OK")
+		else:
+			var n = rng.randi_range(0,drawings.size()-1)
+			var drawing_name = drawings.pop_at(n)
+			customer.set_drawing(load(drawing_name + ".png"))
+			customer.set_mini_drawing(load(drawing_name + "_small.png"))
 		add_child(customer)
 		customers += [customer]
 
 func new_customer():
 	var customer = customers.pop_front()
-	get_node("../Canvas/Model").set_model(customer.drawing, customer.mini_drawing)
-	get_node("../Hud/Masks").new_model()
+	get_node("../Canvas/Stencil").set_stencil(customer.drawing, customer.mini_drawing)
+	get_node("../Hud/Masks").new_stencil()
 	remove_child(customer)
 	#for cust in customers:
 	#	cust.position +=(Vector2(200, 0))

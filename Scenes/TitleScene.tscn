@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/TitleScene.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/HelveticaBQ-Roman.otf" type="DynamicFontData" id=2]
@@ -7,8 +7,10 @@
 [ext_resource path="res://Sprites/Buttons/QuitOn.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Buttons/QuitOff.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/Buttons/BackOn.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/Drawings/TattooDraw01.png" type="Texture" id=8]
-[ext_resource path="res://Scripts/ExternalModel.gd" type="Script" id=9]
+
+[sub_resource type="DynamicFont" id=3]
+size = 30
+font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 50
@@ -39,12 +41,24 @@ margin_bottom = 781.0
 texture_normal = ExtResource( 3 )
 texture_hover = ExtResource( 4 )
 
-[node name="LoadExternalModel" type="TextureButton" parent="CanvasLayer"]
-margin_left = 122.0
-margin_top = 461.0
-margin_right = 422.0
-margin_bottom = 591.0
+[node name="ExternalStencils" type="VBoxContainer" parent="CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="LoadExternalStencil" type="TextureButton" parent="CanvasLayer/ExternalStencils"]
+margin_right = 319.0
+margin_bottom = 130.0
 texture_normal = ExtResource( 7 )
+
+[node name="Label" type="Label" parent="CanvasLayer/ExternalStencils"]
+margin_top = 134.0
+margin_right = 319.0
+margin_bottom = 169.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "0 external STENCILS"
+uppercase = true
 
 [node name="PlayHard" type="Button" parent="CanvasLayer"]
 margin_left = 527.0
@@ -112,15 +126,7 @@ align = 2
 current = true
 zoom = Vector2( 1.333, 1.333 )
 
-[node name="ExternalModel" type="Node2D" parent="."]
-position = Vector2( -891, 526 )
-scale = Vector2( 0.5, 0.5 )
-script = ExtResource( 9 )
-
-[node name="Sprite" type="Sprite" parent="ExternalModel"]
-texture = ExtResource( 8 )
-
 [connection signal="button_down" from="CanvasLayer/Quit" to="." method="_on_Quit_button_down"]
 [connection signal="button_down" from="CanvasLayer/Play" to="." method="_on_Play_button_down"]
-[connection signal="button_down" from="CanvasLayer/LoadExternalModel" to="ExternalModel" method="_on_LoadExternalModel_button_down"]
+[connection signal="pressed" from="CanvasLayer/ExternalStencils/LoadExternalStencil" to="." method="_on_LoadExternalStencil_pressed"]
 [connection signal="button_down" from="CanvasLayer/PlayHard" to="." method="_on_PlayHard_button_down"]

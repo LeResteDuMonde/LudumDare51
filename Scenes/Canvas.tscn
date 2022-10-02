@@ -4,7 +4,7 @@
 [ext_resource path="res://Sprites/Canva.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/Drawings/TattooDraw04.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/Canvas.gd" type="Script" id=4]
-[ext_resource path="res://Scripts/Model.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Stencil.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 540, 540 )
@@ -23,7 +23,7 @@ texture = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 1 )
 
-[node name="Model" type="Sprite" parent="."]
+[node name="Stencil" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.313726 )
 texture = ExtResource( 3 )
 script = ExtResource( 5 )
