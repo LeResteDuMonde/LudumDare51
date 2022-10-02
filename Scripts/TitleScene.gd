@@ -10,6 +10,10 @@ func _ready():
 	get_node("CanvasLayer/Highscores/Hard/Score").text = str(resultManager.highscore_hard) + "%"
 	set_external_stencil_count()
 
+	if(OS.has_feature("HTML5")):
+		$CanvasLayer/CanvasLayer/Quit.hide()
+		$CanvasLayer/CanvasLayer/LoadExternalModel.disabled = true
+
 func _on_Play_button_down():
 	resultManager.hard_mode = false
 	sceneManager.load_game()
