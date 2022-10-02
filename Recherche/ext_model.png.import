@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/GameHud01.PNG-63fe11e311bf008bc52797ac5f6c1551.stex"
+path="res://.import/ext_model.png-efe2ea5fabf6fa4ab4659931088b3f41.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Hud/GameHud01.PNG"
-dest_files=[ "res://.import/GameHud01.PNG-63fe11e311bf008bc52797ac5f6c1551.stex" ]
+source_file="res://Recherche/ext_model.png"
+dest_files=[ "res://.import/ext_model.png-efe2ea5fabf6fa4ab4659931088b3f41.stex" ]
 
 [params]
 

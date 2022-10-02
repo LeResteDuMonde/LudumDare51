@@ -137,4 +137,4 @@ func hard_mode():
 	modulate = Color(1,1,1,.5)
 
 	var tween := create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
-	tween.tween_property(self, "modulate",  Color(1,1,1,0) , 6)
+	tween.tween_property(self, "modulate",  Color(1,1,1,0) , 5.25)

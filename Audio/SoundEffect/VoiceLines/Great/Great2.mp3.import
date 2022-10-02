@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Great2.mp3-d9477667fa776de9e20e7024b0ff01c8.mp3str"
+
+[deps]
+
+source_file="res://Audio/SoundEffect/VoiceLines/Great/Great2.mp3"
+dest_files=[ "res://.import/Great2.mp3-d9477667fa776de9e20e7024b0ff01c8.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

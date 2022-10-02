@@ -67,21 +67,23 @@ func set_cursor(cursor_sprite):
 
 
 func score_sound_effect(score):
-	var score_label = "Greate"
-	if (score < 10):
+	var score_label = "Insane"
+	if (score < 20):
 		score_label = "Ha"
-	elif (score < 20):
-		score_label = "Hmmm"
 	elif (score < 30):
-		score_label = "Well"
+		score_label = "Hmmm"
 	elif (score < 40):
-		score_label = "Ok"
+		score_label = "Well"
 	elif (score < 50):
-		score_label = "ThankYou"
+		score_label = "Ok"
 	elif (score < 60):
-		score_label = "Nice"
+		score_label = "ThankYou"
 	elif (score < 70):
+		score_label = "Nice"
+	elif (score < 80):
 		score_label = "Cool"
+	elif (score < 90):
+		score_label = "Great"
 
 	var voice_lines = []
 	var dir_name = "res://Audio/SoundEffect/VoiceLines/" + score_label

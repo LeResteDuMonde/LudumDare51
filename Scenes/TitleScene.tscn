@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/TitleScene.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/HelveticaBQ-Roman.otf" type="DynamicFontData" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://Sprites/Buttons/StartButtonsOn.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/Buttons/QuitOn.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Buttons/QuitOff.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Buttons/BackOn.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Drawings/TattooDraw01.png" type="Texture" id=8]
+[ext_resource path="res://Scripts/ExternalModel.gd" type="Script" id=9]
 
 [sub_resource type="DynamicFont" id=2]
 size = 50
@@ -35,6 +38,13 @@ margin_right = 944.0
 margin_bottom = 781.0
 texture_normal = ExtResource( 3 )
 texture_hover = ExtResource( 4 )
+
+[node name="LoadExternalModel" type="TextureButton" parent="CanvasLayer"]
+margin_left = 122.0
+margin_top = 461.0
+margin_right = 422.0
+margin_bottom = 591.0
+texture_normal = ExtResource( 7 )
 
 [node name="PlayHard" type="Button" parent="CanvasLayer"]
 margin_left = 527.0
@@ -102,6 +112,15 @@ align = 2
 current = true
 zoom = Vector2( 1.333, 1.333 )
 
+[node name="ExternalModel" type="Node2D" parent="."]
+position = Vector2( -891, 526 )
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="ExternalModel"]
+texture = ExtResource( 8 )
+
 [connection signal="button_down" from="CanvasLayer/Quit" to="." method="_on_Quit_button_down"]
 [connection signal="button_down" from="CanvasLayer/Play" to="." method="_on_Play_button_down"]
+[connection signal="button_down" from="CanvasLayer/LoadExternalModel" to="ExternalModel" method="_on_LoadExternalModel_button_down"]
 [connection signal="button_down" from="CanvasLayer/PlayHard" to="." method="_on_PlayHard_button_down"]

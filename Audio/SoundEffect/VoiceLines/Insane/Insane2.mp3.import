@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Insane2.mp3-258958d712677127cc30287f5d9256f0.mp3str"
+
+[deps]
+
+source_file="res://Audio/SoundEffect/VoiceLines/Insane/Insane2.mp3"
+dest_files=[ "res://.import/Insane2.mp3-258958d712677127cc30287f5d9256f0.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
