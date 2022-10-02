@@ -10,7 +10,7 @@ config_version=4
 
 [application]
 
-config/name="LDJAM 51 Every 10 Seconds"
+config/name="Tattooz"
 run/main_scene="res://Scenes/MainScene.tscn"
 config/icon="res://Sprites/GameIcon.png"
 

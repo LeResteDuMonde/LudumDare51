@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scripts/SceneManager.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/ResultManager.gd" type="Script" id=2]
-[ext_resource path="res://Audio/Music/TattooMusicTheme.wav" type="AudioStream" id=3]
+[ext_resource path="res://Audio/Music/OstGameTattooz.wav" type="AudioStream" id=3]
 [ext_resource path="res://Audio/SoundEffect/PageFlip.wav" type="AudioStream" id=4]
 [ext_resource path="res://Scripts/ExternalStencilManager.gd" type="Script" id=5]
 
@@ -14,6 +14,7 @@ script = ExtResource( 2 )
 
 [node name="MusiqueManager" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
+volume_db = -5.0
 autoplay = true
 
 [node name="PageFlip" type="AudioStreamPlayer2D" parent="."]

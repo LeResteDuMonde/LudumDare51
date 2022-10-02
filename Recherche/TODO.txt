@@ -1,0 +1,32 @@
+TITLE SCENE
+
+Ext stencils button
+on / hover / disbled (only on desktop)
+
+Loaded stencil text
+
+High Score
+normal / hard
+
+Game Name
+
+Button
+Play / Play Hard / Quit
+on / hover
+(see if we keep buttons from BROL au Vil-Ahj)
+(size : 300 * 130)
+
+MAIN SCENE
+
+Menu Button
+on / hover
+
+Tattoo Machine Cursor
+(same hotSpot as cursor / same size : 20 * 20 )
+
+RESULT SCENE
+
+Place for 12 tattos
+
+Button
+Replay / Menu
