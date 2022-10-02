@@ -16,3 +16,6 @@ func _on_Play_button_down():
 func _on_PlayHard_button_down():
 	resultManager.hard_mode = true
 	sceneManager.load_game()
+
+func _on_Quit_button_down():
+	get_tree().quit()

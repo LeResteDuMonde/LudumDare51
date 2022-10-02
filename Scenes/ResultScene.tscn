@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Fonts/HelveticaBQ-Roman.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scripts/ResultScene.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/Buttons/RestartOff.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Buttons/RestartOn.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 49
@@ -17,7 +19,6 @@ script = ExtResource( 2 )
 [node name="Results" type="Node2D" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-follow_viewport_enable = true
 
 [node name="Score" type="Node2D" parent="CanvasLayer"]
 show_behind_parent = true
@@ -26,10 +27,10 @@ z_index = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/Score"]
 anchor_right = 0.642
-margin_left = 58.0
-margin_top = 868.0
-margin_right = 183.0
-margin_bottom = 925.0
+margin_left = 536.0
+margin_top = 888.0
+margin_right = 661.0
+margin_bottom = 945.0
 rect_rotation = -6.6
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 1 )
@@ -41,26 +42,19 @@ margin_top = 551.0
 margin_right = 1077.0
 margin_bottom = 691.0
 
-[node name="Replay" type="Button" parent="CanvasLayer/VBoxContainer"]
+[node name="Menu" type="Button" parent="CanvasLayer/VBoxContainer"]
 margin_right = 330.0
 margin_bottom = 53.0
 custom_fonts/font = SubResource( 2 )
-text = "Replay"
-
-[node name="ReplayHard" type="Button" parent="CanvasLayer/VBoxContainer"]
-margin_top = 57.0
-margin_right = 330.0
-margin_bottom = 110.0
-custom_fonts/font = SubResource( 2 )
-text = "Replay Hard"
-
-[node name="Menu" type="Button" parent="CanvasLayer/VBoxContainer"]
-margin_top = 114.0
-margin_right = 330.0
-margin_bottom = 167.0
-custom_fonts/font = SubResource( 2 )
 text = "Menu"
 
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/Replay" to="." method="_on_Replay_pressed"]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/ReplayHard" to="." method="_on_ReplayHard_pressed"]
+[node name="Replay" type="TextureButton" parent="CanvasLayer"]
+margin_left = 354.0
+margin_top = 454.0
+margin_right = 654.0
+margin_bottom = 584.0
+texture_normal = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Menu" to="." method="_on_Menu_pressed"]
+[connection signal="button_down" from="CanvasLayer/Replay" to="." method="_on_Replay_button_down"]

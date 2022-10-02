@@ -46,11 +46,9 @@ func _ready():
 
 	resultManager.save_game()
 
-func _on_Replay_pressed():
-	sceneManager.load_game()
 
 func _on_Menu_pressed():
 	sceneManager.load_menu()
 
-# func _on_ReplayHard_pressed():
-# 	sceneManager.load_game()
+func _on_Replay_button_down():
+	sceneManager.load_game()

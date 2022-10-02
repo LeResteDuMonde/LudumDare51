@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/CustomersManager.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Timer.gd" type="Script" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://Audio/SoundEffect/Transition.wav" type="AudioStream" id=10]
 [ext_resource path="res://Sprites/Hud/GameHudMask2.png" type="Texture" id=11]
 [ext_resource path="res://Scripts/HudMask.gd" type="Script" id=12]
+[ext_resource path="res://Sprites/Buttons/BackOff.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/Buttons/BackOn.png" type="Texture" id=14]
 
 [sub_resource type="DynamicFont" id=1]
 size = 49
@@ -101,5 +103,16 @@ rect_rotation = -6.6
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "???%"
+
+[node name="CanvasLayerButton" type="CanvasLayer" parent="."]
+
+[node name="Menu" type="TextureButton" parent="CanvasLayerButton"]
+margin_left = 1372.0
+margin_top = 951.0
+margin_right = 1536.0
+margin_bottom = 1028.0
+texture_normal = ExtResource( 13 )
+texture_hover = ExtResource( 14 )
+expand = true
 
 [connection signal="new_customer" from="CanvasLayer/Timer" to="Customers" method="_on_Timer_new_customer"]
