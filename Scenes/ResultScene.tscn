@@ -6,7 +6,7 @@
 [ext_resource path="res://Sprites/Buttons/New/ButtonsRestartOFF.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/ResultScene/EndBoard1.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/ResultScene/EndBoard2.png" type="Texture" id=6]
-[ext_resource path="res://ButtonsMenuON.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Buttons/New/ButtonsMenuON.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/Buttons/New/ButtonsRestartON.png" type="Texture" id=8]
 
 [sub_resource type="DynamicFont" id=1]

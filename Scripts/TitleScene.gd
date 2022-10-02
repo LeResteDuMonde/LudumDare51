@@ -14,8 +14,8 @@ func _ready():
 	set_external_stencil_count()
 	
 	if(OS.has_feature("HTML5")):
-		$CanvasLayer/Quit.hide()
-		$CanvasLayer/Buttons/LoadExternalStencils.disabled = true
+		$CanvasLayer/Buttons/Quit.hide()
+		$CanvasLayer/ExternalStencils/LoadExternalStencils.disabled = true
 
 func _on_Play_button_down():
 	resultManager.hard_mode = false
